@@ -7,10 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0D47705123B78A57005209A5 /* Tip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D47704D23B78A57005209A5 /* Tip.swift */; };
+		0D47705223B78A57005209A5 /* TipView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D47704E23B78A57005209A5 /* TipView.swift */; };
+		0D47705323B78A57005209A5 /* TipsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D47704F23B78A57005209A5 /* TipsManager.swift */; };
+		0D47705423B78A57005209A5 /* TipView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0D47705023B78A57005209A5 /* TipView.xib */; };
 		0D5A7DB823B4FC4A00E0687B /* FBSnapshotTestCase.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0491600AEA500A849511DBA7 /* FBSnapshotTestCase.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0D5A7DB923B4FC4A00E0687B /* Nimble_Snapshots.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 40B2AC5FE675C1BC6FEA20DC /* Nimble_Snapshots.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0D5A7DBA23B4FC4A00E0687B /* Nimble.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = E2A7396D2260D99900E97D55 /* Nimble.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0D5A7DBB23B4FC4A00E0687B /* Quick.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = E2A7396C2260D99900E97D55 /* Quick.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		0D8922F623B7B0A6004F625D /* UIView+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D8922F523B7B0A6004F625D /* UIView+Utils.swift */; };
 		E202681822117D03004CC28A /* APTips.h in Headers */ = {isa = PBXBuildFile; fileRef = E202681622117D03004CC28A /* APTips.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E275E06F229FF84E00E9900C /* APTips.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E202681322117D03004CC28A /* APTips.framework */; };
 		E275E08322A03A8900E9900C /* APTips.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E202681322117D03004CC28A /* APTips.framework */; };
@@ -73,20 +78,25 @@
 
 /* Begin PBXFileReference section */
 		0491600AEA500A849511DBA7 /* FBSnapshotTestCase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSnapshotTestCase.framework; path = Carthage/Build/iOS/FBSnapshotTestCase.framework; sourceTree = "<group>"; };
+		0D47704D23B78A57005209A5 /* Tip.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tip.swift; sourceTree = "<group>"; };
+		0D47704E23B78A57005209A5 /* TipView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TipView.swift; sourceTree = "<group>"; };
+		0D47704F23B78A57005209A5 /* TipsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TipsManager.swift; sourceTree = "<group>"; };
+		0D47705023B78A57005209A5 /* TipView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TipView.xib; sourceTree = "<group>"; };
+		0D8922F523B7B0A6004F625D /* UIView+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Utils.swift"; sourceTree = "<group>"; };
 		27A65933230C2FF4F758F562 /* carthageUpdate.command */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; name = carthageUpdate.command; path = Scripts/Carthage/carthageUpdate.command; sourceTree = "<group>"; };
 		40B2AC5FE675C1BC6FEA20DC /* Nimble_Snapshots.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Nimble_Snapshots.framework; path = Carthage/Build/iOS/Nimble_Snapshots.framework; sourceTree = "<group>"; };
-		62DD6C247E24D3AA57872B5C /* podCheck.command */ = {isa = PBXFileReference; includeInIndex = 1; name = podCheck.command; path = ../podCheck.command; sourceTree = "<group>"; };
+		62DD6C247E24D3AA57872B5C /* podCheck.command */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; name = podCheck.command; path = ../podCheck.command; sourceTree = "<group>"; };
 		722BFDE9DE58393B9D916719 /* carthageRemove.command */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; name = carthageRemove.command; path = Scripts/Carthage/carthageRemove.command; sourceTree = "<group>"; };
 		75997ED1E9FAC56B9BEC3F0E /* carthageAdd.command */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; name = carthageAdd.command; path = Scripts/Carthage/carthageAdd.command; sourceTree = "<group>"; };
-		8D7D4EE7EB4DCAAA3FDBBB4F /* DEPLOY PROCESS.md */ = {isa = PBXFileReference; includeInIndex = 1; name = "DEPLOY PROCESS.md"; path = "../DEPLOY PROCESS.md"; sourceTree = "<group>"; };
-		8F5C03679E7E1C284439AE52 /* CHANGELOG.md */ = {isa = PBXFileReference; includeInIndex = 1; name = CHANGELOG.md; path = ../CHANGELOG.md; sourceTree = "<group>"; };
-		9DB565C61F1A1144BE1CA387 /* .gitignore */ = {isa = PBXFileReference; includeInIndex = 1; name = .gitignore; path = ../.gitignore; sourceTree = "<group>"; };
-		A81B7E7DDDC502FF86A6168F /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; name = README.md; path = ../README.md; sourceTree = "<group>"; };
-		AE49AEB0A4A9016C60AC8250 /* .travis.yml */ = {isa = PBXFileReference; includeInIndex = 1; name = .travis.yml; path = ../.travis.yml; sourceTree = "<group>"; };
-		AF13BF436F00B01268EE094B /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
-		C7852FCDDB1A93EAFAF506D2 /* checkBuild.command */ = {isa = PBXFileReference; includeInIndex = 1; name = checkBuild.command; path = ../checkBuild.command; sourceTree = "<group>"; };
-		D18A3514BAD404B967206752 /* APTips.podspec */ = {isa = PBXFileReference; includeInIndex = 1; name = APTips.podspec; path = ../APTips.podspec; sourceTree = "<group>"; };
-		DC77CB9A63988DF37F4743C4 /* .cocoadocs.yml */ = {isa = PBXFileReference; includeInIndex = 1; name = .cocoadocs.yml; path = ../.cocoadocs.yml; sourceTree = "<group>"; };
+		8D7D4EE7EB4DCAAA3FDBBB4F /* DEPLOY PROCESS.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = "DEPLOY PROCESS.md"; path = "../DEPLOY PROCESS.md"; sourceTree = "<group>"; };
+		8F5C03679E7E1C284439AE52 /* CHANGELOG.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = CHANGELOG.md; path = ../CHANGELOG.md; sourceTree = "<group>"; };
+		9DB565C61F1A1144BE1CA387 /* .gitignore */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = .gitignore; path = ../.gitignore; sourceTree = "<group>"; };
+		A81B7E7DDDC502FF86A6168F /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		AE49AEB0A4A9016C60AC8250 /* .travis.yml */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.yaml; name = .travis.yml; path = ../.travis.yml; sourceTree = "<group>"; };
+		AF13BF436F00B01268EE094B /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
+		C7852FCDDB1A93EAFAF506D2 /* checkBuild.command */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; name = checkBuild.command; path = ../checkBuild.command; sourceTree = "<group>"; };
+		D18A3514BAD404B967206752 /* APTips.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = APTips.podspec; path = ../APTips.podspec; sourceTree = "<group>"; };
+		DC77CB9A63988DF37F4743C4 /* .cocoadocs.yml */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.yaml; name = .cocoadocs.yml; path = ../.cocoadocs.yml; sourceTree = "<group>"; };
 		E202681322117D03004CC28A /* APTips.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = APTips.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E202681622117D03004CC28A /* APTips.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = APTips.h; sourceTree = "<group>"; };
 		E202681722117D03004CC28A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -104,7 +114,7 @@
 		E2A7396D2260D99900E97D55 /* Nimble.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Nimble.framework; path = Carthage/Build/iOS/Nimble.framework; sourceTree = "<group>"; };
 		E2C3136822DF77F300D6797A /* __ReferenceImages */ = {isa = PBXFileReference; lastKnownFileType = folder; path = __ReferenceImages; sourceTree = "<group>"; };
 		E2C3136922DF77F300D6797A /* __FailureDiffs */ = {isa = PBXFileReference; lastKnownFileType = folder; path = __FailureDiffs; sourceTree = "<group>"; };
-		F9DC626D27B9811247BAEF06 /* podPush.command */ = {isa = PBXFileReference; includeInIndex = 1; name = podPush.command; path = ../podPush.command; sourceTree = "<group>"; };
+		F9DC626D27B9811247BAEF06 /* podPush.command */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; name = podPush.command; path = ../podPush.command; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -183,6 +193,11 @@
 		E2766F332260FFF7003BDA19 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				0D47704D23B78A57005209A5 /* Tip.swift */,
+				0D47704F23B78A57005209A5 /* TipsManager.swift */,
+				0D47704E23B78A57005209A5 /* TipView.swift */,
+				0D47705023B78A57005209A5 /* TipView.xib */,
+				0D8922F523B7B0A6004F625D /* UIView+Utils.swift */,
 			);
 			name = Sources;
 			path = ../../APTips/Classes;
@@ -191,12 +206,12 @@
 		E2A7394C2260CFC700E97D55 /* Example */ = {
 			isa = PBXGroup;
 			children = (
+				E2A739592260CFC800E97D55 /* Info.plist */,
 				E2A7394D2260CFC700E97D55 /* AppDelegate.swift */,
 				E2A7394F2260CFC700E97D55 /* ViewController.swift */,
-				E2A739512260CFC700E97D55 /* Main.storyboard */,
 				E2A739542260CFC800E97D55 /* Assets.xcassets */,
 				E2A739562260CFC800E97D55 /* LaunchScreen.storyboard */,
-				E2A739592260CFC800E97D55 /* Info.plist */,
+				E2A739512260CFC700E97D55 /* Main.storyboard */,
 			);
 			path = Example;
 			sourceTree = "<group>";
@@ -322,11 +337,12 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1010;
-				LastUpgradeCheck = 1010;
+				LastUpgradeCheck = 1130;
 				ORGANIZATIONNAME = "Anton Plebanovich";
 				TargetAttributes = {
 					E202681222117D03004CC28A = {
 						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1130;
 					};
 					E2A7394A2260CFC700E97D55 = {
 						CreatedOnToolsVersion = 10.1;
@@ -337,7 +353,7 @@
 					};
 				};
 			};
-			buildConfigurationList = E202680D22117D03004CC28A /* Build configuration list for PBXProject "PROJECTNAME" */;
+			buildConfigurationList = E202680D22117D03004CC28A /* Build configuration list for PBXProject "APTips" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -362,6 +378,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0D47705423B78A57005209A5 /* TipView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -446,6 +463,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0D47705223B78A57005209A5 /* TipView.swift in Sources */,
+				0D47705323B78A57005209A5 /* TipsManager.swift in Sources */,
+				0D8922F623B7B0A6004F625D /* UIView+Utils.swift in Sources */,
+				0D47705123B78A57005209A5 /* Tip.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -553,7 +574,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -612,7 +633,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -628,6 +649,7 @@
 		E202681C22117D03004CC28A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
@@ -645,9 +667,11 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.convene.Elevate.APTips;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.anton-plebanovich.APTips";
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -655,6 +679,7 @@
 		E202681D22117D03004CC28A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
@@ -672,9 +697,10 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.convene.Elevate.APTips;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.anton-plebanovich.APTips";
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -685,17 +711,17 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = Example/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.anton-plebanovich.APTips-Example";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.anton-plebanovich.APTips-Example${DEVELOPMENT_TEAM}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -707,17 +733,17 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = Example/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.anton-plebanovich.APTips-Example";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.anton-plebanovich.APTips-Example${DEVELOPMENT_TEAM}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -728,6 +754,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -739,7 +766,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.anton-plebanovich.APTips-ExampleTests";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.anton-plebanovich.APTips-ExampleTests${DEVELOPMENT_TEAM}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Example.app/Example";
@@ -751,6 +778,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -762,7 +790,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.anton-plebanovich.APTips-ExampleTests";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.anton-plebanovich.APTips-ExampleTests${DEVELOPMENT_TEAM}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Example.app/Example";
@@ -772,7 +800,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		E202680D22117D03004CC28A /* Build configuration list for PBXProject "PROJECTNAME" */ = {
+		E202680D22117D03004CC28A /* Build configuration list for PBXProject "APTips" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				E202681922117D03004CC28A /* Debug */,
