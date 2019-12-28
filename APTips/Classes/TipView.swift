@@ -30,10 +30,11 @@ public final class TipView: UIView {
     public enum Constants {
         public enum View {
             public static var contentBackgroundColor: UIColor = #colorLiteral(red: 0.1294117647, green: 0.1333333333, blue: 0.137254902, alpha: 0.9)
+            public static var contentCornerRadius: CGFloat = 8
             public static var infoBackgroundColor: UIColor = #colorLiteral(red: 0.7411764706, green: 0.7490196078, blue: 0.7568627451, alpha: 1)
             public static var infoLabelTextColor: UIColor = #colorLiteral(red: 0.1294117647, green: 0.1333333333, blue: 0.137254902, alpha: 1)
             public static var showInfoView: Bool = false
-            public static var tipLabelFont: UIFont = .preferredFont(forTextStyle: .body)
+            public static var tipLabelFont: UIFont = .systemFont(ofSize: 17, weight: .bold)
             public static var tipLabelTextColor: UIColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         }
     }
@@ -42,7 +43,7 @@ public final class TipView: UIView {
         let contentView = UIView()
         contentView.translatesAutoresizingMaskIntoConstraints = false
         contentView.backgroundColor = Constants.View.contentBackgroundColor
-        contentView.layer.cornerRadius = 3
+        contentView.layer.cornerRadius = Constants.View.contentCornerRadius
         contentView.accessibilityIdentifier = "contentView"
         
         return contentView
@@ -74,6 +75,8 @@ public final class TipView: UIView {
         tipLabel.translatesAutoresizingMaskIntoConstraints = false
         tipLabel.backgroundColor = .clear
         tipLabel.numberOfLines = 0
+        tipLabel.textAlignment = .center
+        tipLabel.font = Constants.View.tipLabelFont
         tipLabel.textColor = Constants.View.tipLabelTextColor
         tipLabel.accessibilityIdentifier = "tipLabel"
         
@@ -248,7 +251,7 @@ public final class TipView: UIView {
 // ******************************* MARK: - Create
 
 public extension TipView.Constants {
-    public enum Layout {
+    enum Layout {
         public static var infoViewSide: CGFloat = 20
         public static var sideOffset: CGFloat = 8
         public static var tipHeight: CGFloat = 11

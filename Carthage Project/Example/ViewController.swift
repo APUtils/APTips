@@ -33,5 +33,5 @@ final class ViewController: UIViewController {
 
 extension Tip {
     static let exampleOnce = Tip(message: "Example show once tip")
-    static let exampleAction = Tip(message: "Example action tip")
+    static let exampleAction = Tip(message: "Example action tip with long text message")
 }
