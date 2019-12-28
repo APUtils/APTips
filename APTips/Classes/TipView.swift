@@ -27,20 +27,21 @@ public final class TipView: UIView {
     
     // ******************************* MARK: - Lazy Views
     
-    enum Constants {
-        static let infoBackgroundColor: UIColor = #colorLiteral(red: 0.7411764706, green: 0.7490196078, blue: 0.7568627451, alpha: 1)
-        static let contentBackgroundColor: UIColor = #colorLiteral(red: 0.1294117647, green: 0.1333333333, blue: 0.137254902, alpha: 0.9)
-        static let infoLabelTextColor: UIColor = #colorLiteral(red: 0.1294117647, green: 0.1333333333, blue: 0.137254902, alpha: 1)
-        static let tipHeight: CGFloat = 11
-        static let tipVerticalOffset: CGFloat = 3
-        static let tipWidth: CGFloat = 20
-        static let tipLabelTextColor: UIColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+    public enum Constants {
+        public enum View {
+            public static var contentBackgroundColor: UIColor = #colorLiteral(red: 0.1294117647, green: 0.1333333333, blue: 0.137254902, alpha: 0.9)
+            public static var infoBackgroundColor: UIColor = #colorLiteral(red: 0.7411764706, green: 0.7490196078, blue: 0.7568627451, alpha: 1)
+            public static var infoLabelTextColor: UIColor = #colorLiteral(red: 0.1294117647, green: 0.1333333333, blue: 0.137254902, alpha: 1)
+            public static var showInfoView: Bool = false
+            public static var tipLabelFont: UIFont = .preferredFont(forTextStyle: .body)
+            public static var tipLabelTextColor: UIColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        }
     }
     
     fileprivate lazy var contentView: UIView = {
         let contentView = UIView()
         contentView.translatesAutoresizingMaskIntoConstraints = false
-        contentView.backgroundColor = Constants.contentBackgroundColor
+        contentView.backgroundColor = Constants.View.contentBackgroundColor
         contentView.layer.cornerRadius = 3
         contentView.accessibilityIdentifier = "contentView"
         
@@ -50,8 +51,8 @@ public final class TipView: UIView {
     fileprivate lazy var infoView: UIView = {
         let infoView = UIView()
         infoView.translatesAutoresizingMaskIntoConstraints = false
-        infoView.backgroundColor = Constants.infoBackgroundColor
-        infoView.layer.cornerRadius = 12
+        infoView.backgroundColor = Constants.View.infoBackgroundColor
+        infoView.layer.cornerRadius = Constants.Layout.infoViewSide / 2
         infoView.accessibilityIdentifier = "infoView"
         
         return infoView
@@ -62,7 +63,7 @@ public final class TipView: UIView {
         infoLabel.translatesAutoresizingMaskIntoConstraints = false
         infoLabel.backgroundColor = .clear
         infoLabel.text = "i"
-        infoLabel.textColor = Constants.infoLabelTextColor
+        infoLabel.textColor = Constants.View.infoLabelTextColor
         infoLabel.accessibilityIdentifier = "infoLabel"
         
         return infoLabel
@@ -73,7 +74,7 @@ public final class TipView: UIView {
         tipLabel.translatesAutoresizingMaskIntoConstraints = false
         tipLabel.backgroundColor = .clear
         tipLabel.numberOfLines = 0
-        tipLabel.textColor = Constants.tipLabelTextColor
+        tipLabel.textColor = Constants.View.tipLabelTextColor
         tipLabel.accessibilityIdentifier = "tipLabel"
         
         return tipLabel
@@ -82,7 +83,7 @@ public final class TipView: UIView {
     fileprivate lazy var topArrowView: UIView = {
         let topArrowView = UIView()
         topArrowView.translatesAutoresizingMaskIntoConstraints = false
-        topArrowView.backgroundColor = Constants.contentBackgroundColor
+        topArrowView.backgroundColor = Constants.View.contentBackgroundColor
         topArrowView.accessibilityIdentifier = "topArrowView"
         
         return topArrowView
@@ -91,7 +92,7 @@ public final class TipView: UIView {
     fileprivate lazy var bottomArrowView: UIView = {
         let bottomArrowView = UIView()
         bottomArrowView.translatesAutoresizingMaskIntoConstraints = false
-        bottomArrowView.backgroundColor = Constants.contentBackgroundColor
+        bottomArrowView.backgroundColor = Constants.View.contentBackgroundColor
         bottomArrowView.accessibilityIdentifier = "bottomArrowView"
         
         return bottomArrowView
@@ -140,14 +141,14 @@ public final class TipView: UIView {
     }
     
     private func configureMask() {
-        let tipMinX = (bottomArrowView.bounds.size.width - Constants.tipWidth) / 2
-        let tipMaxX = (bottomArrowView.bounds.size.width + Constants.tipWidth) / 2
+        let tipMinX = (bottomArrowView.bounds.size.width - Constants.Layout.tipWidth) / 2
+        let tipMaxX = (bottomArrowView.bounds.size.width + Constants.Layout.tipWidth) / 2
         
         // TODO: Do arrow rounded if needed later
         let path = UIBezierPath()
         path.move(to: .init(x: tipMinX, y: 0))
         path.addLine(to: .init(x: tipMaxX, y: 0))
-        path.addLine(to: .init(x: bottomArrowView.bounds.size.width / 2, y: Constants.tipHeight))
+        path.addLine(to: .init(x: bottomArrowView.bounds.size.width / 2, y: Constants.Layout.tipHeight))
         path.addLine(to: .init(x: tipMinX, y: 0))
         bottomTipShapeLayer.path = path.cgPath
         bottomArrowView.layer.mask = bottomTipShapeLayer
@@ -187,16 +188,24 @@ public final class TipView: UIView {
             if topSpace > bottomSpace {
                 bottomArrowView.alpha = 1
                 topArrowView.alpha = 0
-                let positionConstraint = bottomArrowView.bottomAnchor.constraint(equalTo: sourceView.topAnchor, constant: Constants.tipVerticalOffset)
+                let positionConstraint = bottomArrowView.bottomAnchor.constraint(equalTo: sourceView.topAnchor, constant: Constants.Layout.tipVerticalOffset)
                 positionConstraint.isActive = true
                 self.positionConstraint = positionConstraint
+                
+                let centerXConstraint = bottomArrowView.centerXAnchor.constraint(equalTo: sourceView.centerXAnchor)
+                centerXConstraint.priority = .init(2)
+                centerXConstraint.isActive = true
                 
             } else {
                 bottomArrowView.alpha = 0
                 topArrowView.alpha = 1
-                let positionConstraint = sourceView.bottomAnchor.constraint(equalTo: topArrowView.topAnchor, constant: Constants.tipVerticalOffset)
+                let positionConstraint = sourceView.bottomAnchor.constraint(equalTo: topArrowView.topAnchor, constant: Constants.Layout.tipVerticalOffset)
                 positionConstraint.isActive = true
                 self.positionConstraint = positionConstraint
+                
+                let centerXConstraint = topArrowView.centerXAnchor.constraint(equalTo: sourceView.centerXAnchor)
+                centerXConstraint.priority = .init(2)
+                centerXConstraint.isActive = true
             }
             
         case .center:
@@ -211,12 +220,20 @@ public final class TipView: UIView {
                 positionConstraint.isActive = true
                 self.positionConstraint = positionConstraint
                 
+                let centerXConstraint = bottomArrowView.centerXAnchor.constraint(equalTo: sourceView.centerXAnchor)
+                centerXConstraint.priority = .init(2)
+                centerXConstraint.isActive = true
+                
             } else {
                 bottomArrowView.alpha = 0
                 topArrowView.alpha = 1
                 let positionConstraint = sourceView.centerYAnchor.constraint(equalTo: topArrowView.topAnchor)
                 positionConstraint.isActive = true
                 self.positionConstraint = positionConstraint
+                
+                let centerXConstraint = topArrowView.centerXAnchor.constraint(equalTo: sourceView.centerXAnchor)
+                centerXConstraint.priority = .init(2)
+                centerXConstraint.isActive = true
             }
         }
     }
@@ -230,7 +247,18 @@ public final class TipView: UIView {
 
 // ******************************* MARK: - Create
 
+public extension TipView.Constants {
+    public enum Layout {
+        public static var infoViewSide: CGFloat = 20
+        public static var sideOffset: CGFloat = 8
+        public static var tipHeight: CGFloat = 11
+        public static var tipVerticalOffset: CGFloat = 3
+        public static var tipWidth: CGFloat = 20
+    }
+}
+
 extension TipView {
+    
     static func create(tip: Tip, for source: UIView, displayMode: DisplayMode, deallocate: @escaping Deallocate = {}, completion: @escaping Completion) -> TipView {
         let view = createFromCode()
         view.tipLabel.text = tip.message
@@ -250,8 +278,11 @@ extension TipView {
         tipView.accessibilityIdentifier = "tipView"
         
         // View Hierarchy
-        tipView.infoView.addSubview(tipView.infoLabel)
-        tipView.contentView.addSubview(tipView.infoView)
+        if Constants.View.showInfoView {
+            tipView.infoView.addSubview(tipView.infoLabel)
+            tipView.contentView.addSubview(tipView.infoView)
+        }
+        
         tipView.contentView.addSubview(tipView.tipLabel)
         tipView.addSubview(tipView.topArrowView)
         tipView.addSubview(tipView.contentView)
@@ -259,33 +290,44 @@ extension TipView {
         tipView.addSubview(tipView.completionButton)
         
         // Constraints
-        tipView.infoLabel.centerYAnchor.constraint(equalTo: tipView.infoView.centerYAnchor).isActive = true
-        tipView.infoLabel.centerXAnchor.constraint(equalTo: tipView.infoView.centerXAnchor).isActive = true
-        
-        tipView.infoView.centerYAnchor.constraint(equalTo: tipView.contentView.centerYAnchor).isActive = true
-        tipView.infoView.heightAnchor.constraint(equalToConstant: 24).isActive = true
-        tipView.infoView.widthAnchor.constraint(equalToConstant: 24).isActive = true
-        tipView.infoView.leadingAnchor.constraint(equalTo: tipView.contentView.leadingAnchor, constant: 16).isActive = true
-        tipView.tipLabel.leadingAnchor.constraint(equalTo: tipView.infoView.trailingAnchor, constant: 16).isActive = true
+        if Constants.View.showInfoView {
+            tipView.infoLabel.centerYAnchor.constraint(equalTo: tipView.infoView.centerYAnchor).isActive = true
+            tipView.infoLabel.centerXAnchor.constraint(equalTo: tipView.infoView.centerXAnchor).isActive = true
+            
+            tipView.infoView.centerYAnchor.constraint(equalTo: tipView.contentView.centerYAnchor).isActive = true
+            tipView.infoView.heightAnchor.constraint(equalToConstant: Constants.Layout.infoViewSide).isActive = true
+            tipView.infoView.widthAnchor.constraint(equalToConstant: Constants.Layout.infoViewSide).isActive = true
+            tipView.infoView.leadingAnchor.constraint(equalTo: tipView.contentView.leadingAnchor, constant: Constants.Layout.sideOffset).isActive = true
+            tipView.tipLabel.leadingAnchor.constraint(equalTo: tipView.infoView.trailingAnchor, constant: Constants.Layout.sideOffset).isActive = true
+        } else {
+            tipView.tipLabel.leadingAnchor.constraint(equalTo: tipView.contentView.leadingAnchor, constant: Constants.Layout.sideOffset).isActive = true
+        }
         
         tipView.tipLabel.centerYAnchor.constraint(equalTo: tipView.contentView.centerYAnchor).isActive = true
-        tipView.contentView.trailingAnchor.constraint(equalTo: tipView.tipLabel.trailingAnchor, constant: 16).isActive = true
-        tipView.tipLabel.topAnchor.constraint(equalTo: tipView.contentView.topAnchor, constant: 16).isActive = true
-        tipView.contentView.bottomAnchor.constraint(equalTo: tipView.tipLabel.bottomAnchor, constant: 16).isActive = true
+        tipView.contentView.trailingAnchor.constraint(equalTo: tipView.tipLabel.trailingAnchor, constant: Constants.Layout.sideOffset).isActive = true
+        tipView.tipLabel.topAnchor.constraint(equalTo: tipView.contentView.topAnchor, constant: Constants.Layout.sideOffset).isActive = true
+        tipView.contentView.bottomAnchor.constraint(equalTo: tipView.tipLabel.bottomAnchor, constant: Constants.Layout.sideOffset).isActive = true
         
-        tipView.contentView.leadingAnchor.constraint(greaterThanOrEqualTo: tipView.leadingAnchor, constant: 16).isActive = true
-        tipView.trailingAnchor.constraint(greaterThanOrEqualTo: tipView.contentView.trailingAnchor, constant: 16).isActive = true
-        tipView.contentView.centerXAnchor.constraint(equalTo: tipView.centerXAnchor).isActive = true
+        tipView.contentView.leadingAnchor.constraint(greaterThanOrEqualTo: tipView.leadingAnchor, constant: Constants.Layout.sideOffset).isActive = true
+        tipView.trailingAnchor.constraint(greaterThanOrEqualTo: tipView.contentView.trailingAnchor, constant: Constants.Layout.sideOffset).isActive = true
         
         tipView.topArrowView.bottomAnchor.constraint(equalTo: tipView.contentView.topAnchor).isActive = true
-        tipView.topArrowView.leadingAnchor.constraint(equalTo: tipView.contentView.leadingAnchor).isActive = true
-        tipView.topArrowView.trailingAnchor.constraint(equalTo: tipView.contentView.trailingAnchor).isActive = true
-        tipView.topArrowView.heightAnchor.constraint(equalToConstant: 11).isActive = true
+        tipView.topArrowView.heightAnchor.constraint(equalToConstant: Constants.Layout.tipHeight).isActive = true
+        tipView.topArrowView.widthAnchor.constraint(equalToConstant: Constants.Layout.tipWidth).isActive = true
+        tipView.topArrowView.leadingAnchor.constraint(greaterThanOrEqualTo: tipView.contentView.leadingAnchor, constant: Constants.Layout.sideOffset).isActive = true
+        tipView.contentView.trailingAnchor.constraint(greaterThanOrEqualTo: tipView.topArrowView.trailingAnchor, constant: Constants.Layout.sideOffset).isActive = true
+        let topArrowToContentViewCenterX = tipView.topArrowView.centerXAnchor.constraint(equalTo: tipView.contentView.centerXAnchor)
+        topArrowToContentViewCenterX.priority = .init(1)
+        topArrowToContentViewCenterX.isActive = true
         
         tipView.bottomArrowView.topAnchor.constraint(equalTo: tipView.contentView.bottomAnchor).isActive = true
-        tipView.bottomArrowView.leadingAnchor.constraint(equalTo: tipView.contentView.leadingAnchor).isActive = true
-        tipView.bottomArrowView.trailingAnchor.constraint(equalTo: tipView.contentView.trailingAnchor).isActive = true
-        tipView.bottomArrowView.heightAnchor.constraint(equalToConstant: 11).isActive = true
+        tipView.bottomArrowView.heightAnchor.constraint(equalToConstant: Constants.Layout.tipHeight).isActive = true
+        tipView.bottomArrowView.widthAnchor.constraint(equalToConstant: Constants.Layout.tipWidth).isActive = true
+        tipView.bottomArrowView.leadingAnchor.constraint(greaterThanOrEqualTo: tipView.contentView.leadingAnchor, constant: Constants.Layout.sideOffset).isActive = true
+        tipView.contentView.trailingAnchor.constraint(greaterThanOrEqualTo: tipView.bottomArrowView.trailingAnchor, constant: Constants.Layout.sideOffset).isActive = true
+        let bottomArrowToContentViewCenterX = tipView.bottomArrowView.centerXAnchor.constraint(equalTo: tipView.contentView.centerXAnchor)
+        bottomArrowToContentViewCenterX.priority = .init(1)
+        bottomArrowToContentViewCenterX.isActive = true
         
         tipView.completionButton.topAnchor.constraint(equalTo: tipView.topAnchor).isActive = true
         tipView.completionButton.leadingAnchor.constraint(equalTo: tipView.leadingAnchor).isActive = true

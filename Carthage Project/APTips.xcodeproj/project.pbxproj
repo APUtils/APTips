@@ -10,7 +10,6 @@
 		0D47705123B78A57005209A5 /* Tip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D47704D23B78A57005209A5 /* Tip.swift */; };
 		0D47705223B78A57005209A5 /* TipView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D47704E23B78A57005209A5 /* TipView.swift */; };
 		0D47705323B78A57005209A5 /* TipsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D47704F23B78A57005209A5 /* TipsManager.swift */; };
-		0D47705423B78A57005209A5 /* TipView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0D47705023B78A57005209A5 /* TipView.xib */; };
 		0D5A7DB823B4FC4A00E0687B /* FBSnapshotTestCase.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0491600AEA500A849511DBA7 /* FBSnapshotTestCase.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0D5A7DB923B4FC4A00E0687B /* Nimble_Snapshots.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 40B2AC5FE675C1BC6FEA20DC /* Nimble_Snapshots.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0D5A7DBA23B4FC4A00E0687B /* Nimble.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = E2A7396D2260D99900E97D55 /* Nimble.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -81,7 +80,6 @@
 		0D47704D23B78A57005209A5 /* Tip.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tip.swift; sourceTree = "<group>"; };
 		0D47704E23B78A57005209A5 /* TipView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TipView.swift; sourceTree = "<group>"; };
 		0D47704F23B78A57005209A5 /* TipsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TipsManager.swift; sourceTree = "<group>"; };
-		0D47705023B78A57005209A5 /* TipView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TipView.xib; sourceTree = "<group>"; };
 		0D8922F523B7B0A6004F625D /* UIView+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Utils.swift"; sourceTree = "<group>"; };
 		27A65933230C2FF4F758F562 /* carthageUpdate.command */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; name = carthageUpdate.command; path = Scripts/Carthage/carthageUpdate.command; sourceTree = "<group>"; };
 		40B2AC5FE675C1BC6FEA20DC /* Nimble_Snapshots.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Nimble_Snapshots.framework; path = Carthage/Build/iOS/Nimble_Snapshots.framework; sourceTree = "<group>"; };
@@ -196,7 +194,6 @@
 				0D47704D23B78A57005209A5 /* Tip.swift */,
 				0D47704F23B78A57005209A5 /* TipsManager.swift */,
 				0D47704E23B78A57005209A5 /* TipView.swift */,
-				0D47705023B78A57005209A5 /* TipView.xib */,
 				0D8922F523B7B0A6004F625D /* UIView+Utils.swift */,
 			);
 			name = Sources;
@@ -378,7 +375,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0D47705423B78A57005209A5 /* TipView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

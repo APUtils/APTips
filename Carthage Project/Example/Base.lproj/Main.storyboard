@@ -37,15 +37,105 @@
                                     <action selector="onActionTap:" destination="BYZ-38-t0r" eventType="touchUpInside" id="LJN-Po-Zau"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9us-4F-qNV">
+                                <rect key="frame" x="20" y="209" width="44" height="30"/>
+                                <state key="normal" title="Action"/>
+                                <connections>
+                                    <action selector="onActionTap:" destination="BYZ-38-t0r" eventType="touchUpInside" id="YIy-Yf-6xi"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ogp-bj-jKc">
+                                <rect key="frame" x="350" y="209" width="44" height="30"/>
+                                <state key="normal" title="Action"/>
+                                <connections>
+                                    <action selector="onActionTap:" destination="BYZ-38-t0r" eventType="touchUpInside" id="eHr-9w-yU4"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Do-wZ-XEI">
+                                <rect key="frame" x="350" y="433" width="44" height="30"/>
+                                <state key="normal" title="Action"/>
+                                <connections>
+                                    <action selector="onActionTap:" destination="BYZ-38-t0r" eventType="touchUpInside" id="p9x-dZ-bfc"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hXC-a6-8bw">
+                                <rect key="frame" x="386" y="321" width="44" height="30"/>
+                                <state key="normal" title="Action"/>
+                                <connections>
+                                    <action selector="onActionTap:" destination="BYZ-38-t0r" eventType="touchUpInside" id="UeH-EE-Tqc"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P3N-aT-jDV">
+                                <rect key="frame" x="-16" y="321" width="44" height="30"/>
+                                <state key="normal" title="Action"/>
+                                <connections>
+                                    <action selector="onActionTap:" destination="BYZ-38-t0r" eventType="touchUpInside" id="o8i-I0-7og"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fqR-su-OU1">
+                                <rect key="frame" x="-16" y="545" width="44" height="30"/>
+                                <state key="normal" title="Action"/>
+                                <connections>
+                                    <action selector="onActionTap:" destination="BYZ-38-t0r" eventType="touchUpInside" id="1k2-hX-vqu"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="owD-fk-epz">
+                                <rect key="frame" x="20" y="433" width="44" height="30"/>
+                                <state key="normal" title="Action"/>
+                                <connections>
+                                    <action selector="onActionTap:" destination="BYZ-38-t0r" eventType="touchUpInside" id="rRR-fL-BBA"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zuC-zK-TnX">
+                                <rect key="frame" x="20" y="657" width="44" height="30"/>
+                                <state key="normal" title="Action"/>
+                                <connections>
+                                    <action selector="onActionTap:" destination="BYZ-38-t0r" eventType="touchUpInside" id="PHG-E3-ukK"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FLf-Zb-VRT">
+                                <rect key="frame" x="350" y="657" width="44" height="30"/>
+                                <state key="normal" title="Action"/>
+                                <connections>
+                                    <action selector="onActionTap:" destination="BYZ-38-t0r" eventType="touchUpInside" id="E7K-nE-zz4"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tOC-hu-J6R">
+                                <rect key="frame" x="386" y="545" width="44" height="30"/>
+                                <state key="normal" title="Action"/>
+                                <connections>
+                                    <action selector="onActionTap:" destination="BYZ-38-t0r" eventType="touchUpInside" id="PBu-ez-LMw"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="7Do-wZ-XEI" secondAttribute="trailing" constant="20" id="5j1-rx-9s1"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="FLf-Zb-VRT" secondAttribute="trailing" constant="20" id="649-59-TGe"/>
                             <constraint firstItem="soT-zf-3b2" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="6aO-dV-yIR"/>
+                            <constraint firstItem="P3N-aT-jDV" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="-16" id="7i1-Vv-qd8"/>
+                            <constraint firstItem="FLf-Zb-VRT" firstAttribute="centerY" secondItem="oUN-hU-hZ0" secondAttribute="centerY" id="Inz-jo-bIq"/>
+                            <constraint firstItem="owD-fk-epz" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="J7d-eB-2qC"/>
+                            <constraint firstItem="Ogp-bj-jKc" firstAttribute="centerY" secondItem="Frh-Op-Tha" secondAttribute="centerY" id="Mua-bH-aci"/>
+                            <constraint firstItem="P3N-aT-jDV" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" multiplier="0.75" id="Uiy-dZ-bIH"/>
+                            <constraint firstItem="owD-fk-epz" firstAttribute="centerY" secondItem="soT-zf-3b2" secondAttribute="centerY" id="VD3-eP-edF"/>
+                            <constraint firstItem="9us-4F-qNV" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="ZLp-tb-0wp"/>
+                            <constraint firstItem="tOC-hu-J6R" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" multiplier="1.25" id="ZXx-9M-kQZ"/>
                             <constraint firstItem="Frh-Op-Tha" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="aJQ-mv-dbG"/>
                             <constraint firstItem="soT-zf-3b2" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="aRy-CY-wIB"/>
+                            <constraint firstItem="7Do-wZ-XEI" firstAttribute="centerY" secondItem="soT-zf-3b2" secondAttribute="centerY" id="cVb-Hx-ei6"/>
+                            <constraint firstItem="hXC-a6-8bw" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" multiplier="0.75" id="cq6-nn-lUv"/>
+                            <constraint firstItem="zuC-zK-TnX" firstAttribute="centerY" secondItem="oUN-hU-hZ0" secondAttribute="centerY" id="dXC-n4-Jc9"/>
                             <constraint firstItem="oUN-hU-hZ0" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="hw6-bF-tzv"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Ogp-bj-jKc" secondAttribute="trailing" constant="20" id="jv6-oq-hf3"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="hXC-a6-8bw" secondAttribute="trailing" constant="-16" id="kip-yf-v25"/>
                             <constraint firstItem="oUN-hU-hZ0" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" multiplier="1.5" id="krf-qp-R2H"/>
                             <constraint firstItem="Frh-Op-Tha" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" multiplier="0.5" id="ngH-kw-MR7"/>
+                            <constraint firstItem="fqR-su-OU1" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="-16" id="ocS-LU-sNB"/>
+                            <constraint firstItem="9us-4F-qNV" firstAttribute="centerY" secondItem="Frh-Op-Tha" secondAttribute="centerY" id="pPu-WP-l6c"/>
+                            <constraint firstItem="zuC-zK-TnX" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="tb9-zb-MKu"/>
+                            <constraint firstItem="fqR-su-OU1" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" multiplier="1.25" id="yEp-qZ-ueA"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="tOC-hu-J6R" secondAttribute="trailing" constant="-16" id="yw6-40-miP"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
