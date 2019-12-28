@@ -11,16 +11,6 @@ import Foundation
 /// Manager that is responsible for showing tips.
 public final class TipsManager {
     
-    // ******************************* MARK: - Display Mode
-    
-    enum DisplayMode {
-        case center
-        case side
-    }
-    
-    // TODO: Add logic for center
-    var displayMode: DisplayMode = .side
-    
     // ******************************* MARK: - Private Properties
     
     private static let defaultReusableViews: [UIView.Type] = [UITableViewCell.self, UICollectionViewCell.self]
@@ -45,9 +35,9 @@ public final class TipsManager {
     }
     
     /// Show tip immediatelly.
-    public func show(tip: Tip, for view: UIView) {
+    public func show(tip: Tip, for view: UIView, displayMode: TipView.DisplayMode) {
         let hostView = view._firstViewController?.view ?? view._rootView
-        let tipView = TipView.create(tip: tip, for: view) { tipView in
+        let tipView = TipView.create(tip: tip, for: view, displayMode: displayMode) { tipView in
             // Fade out and remove on completion
             UIView.animate(withDuration: 0.3, animations: {
                 tipView.alpha = 0
@@ -68,7 +58,7 @@ public final class TipsManager {
     
     /// Show specific tip once. It does it after 1s delay so this method can be called
     /// even before view is added to view hierarchy for simplicity.
-    public func showOnce(tip: Tip, for view: UIView) {
+    public func showOnce(tip: Tip, for view: UIView, displayMode: TipView.DisplayMode) {
         guard !displayedTips.contains(tip.message) else { return }
         guard !displayingTips.contains(tip.message) else { return }
         displayingTips.append(tip.message)
@@ -82,7 +72,7 @@ public final class TipsManager {
             }
             
             let hostView = view._firstViewController?.view ?? view._rootView
-            let tipView = TipView.create(tip: tip, for: view, deallocate: { [weak self] in
+            let tipView = TipView.create(tip: tip, for: view, displayMode: displayMode, deallocate: { [weak self] in
                 self?.displayingTips.removeAll(tip.message)
             }, completion: { tipView in
                 // Fade out and remove on completion

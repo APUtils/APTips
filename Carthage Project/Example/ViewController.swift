@@ -21,13 +21,13 @@ final class ViewController: UIViewController {
         super.viewDidLoad()
         
         TipsManager.shared.resetOnceTips()
-        TipsManager.shared.showOnce(tip: .exampleOnce, for: button)
+        TipsManager.shared.showOnce(tip: .exampleOnce, for: button, displayMode: .center)
     }
     
     // ******************************* MARK: - Actions
     
-    @IBAction private func onActionTap(_ sender: Any) {
-        TipsManager.shared.show(tip: .exampleAction, for: button)
+    @IBAction private func onActionTap(_ sender: UIButton) {
+        TipsManager.shared.show(tip: .exampleAction, for: sender, displayMode: .side)
     }
 }
 
