@@ -15,6 +15,7 @@
 		0D5A7DBA23B4FC4A00E0687B /* Nimble.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = E2A7396D2260D99900E97D55 /* Nimble.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0D5A7DBB23B4FC4A00E0687B /* Quick.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = E2A7396C2260D99900E97D55 /* Quick.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0D8922F623B7B0A6004F625D /* UIView+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D8922F523B7B0A6004F625D /* UIView+Utils.swift */; };
+		3D3F7C1CF1369E40F12B2D13 /* APExtensions.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7678C2FFCB2321F5ED98006 /* APExtensions.framework */; };
 		E202681822117D03004CC28A /* APTips.h in Headers */ = {isa = PBXBuildFile; fileRef = E202681622117D03004CC28A /* APTips.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E275E06F229FF84E00E9900C /* APTips.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E202681322117D03004CC28A /* APTips.framework */; };
 		E275E08322A03A8900E9900C /* APTips.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E202681322117D03004CC28A /* APTips.framework */; };
@@ -94,6 +95,7 @@
 		AF13BF436F00B01268EE094B /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		C7852FCDDB1A93EAFAF506D2 /* checkBuild.command */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; name = checkBuild.command; path = ../checkBuild.command; sourceTree = "<group>"; };
 		D18A3514BAD404B967206752 /* APTips.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = APTips.podspec; path = ../APTips.podspec; sourceTree = "<group>"; };
+		D7678C2FFCB2321F5ED98006 /* APExtensions.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = APExtensions.framework; path = Carthage/Build/iOS/APExtensions.framework; sourceTree = "<group>"; };
 		DC77CB9A63988DF37F4743C4 /* .cocoadocs.yml */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.yaml; name = .cocoadocs.yml; path = ../.cocoadocs.yml; sourceTree = "<group>"; };
 		E202681322117D03004CC28A /* APTips.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = APTips.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E202681622117D03004CC28A /* APTips.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = APTips.h; sourceTree = "<group>"; };
@@ -127,6 +129,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3D3F7C1CF1369E40F12B2D13 /* APExtensions.framework in Frameworks */,
 				E275E08322A03A8900E9900C /* APTips.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -246,9 +249,10 @@
 			isa = PBXGroup;
 			children = (
 				1834AC72A69DC91E1F3B8EDA /* _Carthage */,
+				D7678C2FFCB2321F5ED98006 /* APExtensions.framework */,
 				0491600AEA500A849511DBA7 /* FBSnapshotTestCase.framework */,
-				40B2AC5FE675C1BC6FEA20DC /* Nimble_Snapshots.framework */,
 				E2A7396D2260D99900E97D55 /* Nimble.framework */,
+				40B2AC5FE675C1BC6FEA20DC /* Nimble_Snapshots.framework */,
 				E2A7396C2260D99900E97D55 /* Quick.framework */,
 			);
 			name = Frameworks;
@@ -424,11 +428,13 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/APExtensions.framework",
 			);
 			name = "Carthage Copy";
 			outputFileListPaths = (
 			);
 			outputPaths = (
+				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/APExtensions.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;

@@ -1,4 +1,4 @@
-github "APUtils/APExtensions"
+github "APUtils/APExtensions" "master"
 github "ashfurrow/Nimble-Snapshots"
 github "Quick/Nimble"
 github "Quick/Quick"

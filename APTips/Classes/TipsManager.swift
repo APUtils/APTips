@@ -11,6 +11,9 @@ import Foundation
 /// Manager that is responsible for showing tips.
 public final class TipsManager {
     
+    public typealias Completion = () -> Void
+    public typealias FailableCompletion = (Bool) -> Void
+    
     // ******************************* MARK: - Private Properties
     
     private static let defaultReusableViews: [UIView.Type] = [UITableViewCell.self, UICollectionViewCell.self]
@@ -35,16 +38,18 @@ public final class TipsManager {
     }
     
     /// Show tip immediatelly.
-    public func show(tip: Tip, for view: UIView, displayMode: TipView.DisplayMode) {
+    public func show(tip: Tip, for view: UIView, displayMode: TipView.DisplayMode, completion: Completion? = nil) {
         let hostView = view._firstViewController?.view ?? view._rootView
-        let tipView = TipView.create(tip: tip, for: view, displayMode: displayMode) { tipView in
+        let tipView = TipView.create(tip: tip, for: view, displayMode: displayMode, deallocate: {
+            completion?()
+        }, completion: { tipView in
             // Fade out and remove on completion
             UIView.animate(withDuration: 0.3, animations: {
                 tipView.alpha = 0
             }, completion: { _ in
                 tipView.removeFromSuperview()
             })
-        }
+        })
         
         hostView.addSubview(tipView)
         
@@ -58,9 +63,9 @@ public final class TipsManager {
     
     /// Show specific tip once. It does it after 1s delay so this method can be called
     /// even before view is added to view hierarchy for simplicity.
-    public func showOnce(tip: Tip, for view: UIView, displayMode: TipView.DisplayMode) {
-        guard !displayedTips.contains(tip.message) else { return }
-        guard !displayingTips.contains(tip.message) else { return }
+    public func showOnce(tip: Tip, for view: UIView, displayMode: TipView.DisplayMode, completion: FailableCompletion? = nil) {
+        guard !displayedTips.contains(tip.message) else { completion?(false); return }
+        guard !displayingTips.contains(tip.message) else { completion?(false); return }
         displayingTips.append(tip.message)
         
         // Workaround for simplicity. There might be some animations ongoing, e.g. scrolling
@@ -68,12 +73,14 @@ public final class TipsManager {
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [weak view] in
             guard let view = view else {
                 self.displayingTips.removeAll(tip.message)
+                completion?(false)
                 return
             }
             
             let hostView = view._firstViewController?.view ?? view._rootView
             let tipView = TipView.create(tip: tip, for: view, displayMode: displayMode, deallocate: { [weak self] in
                 self?.displayingTips.removeAll(tip.message)
+                completion?(true)
             }, completion: { tipView in
                 // Fade out and remove on completion
                 UIView.animate(withDuration: 0.3, animations: {
