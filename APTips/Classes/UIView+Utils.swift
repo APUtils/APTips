@@ -34,4 +34,18 @@ extension UIView {
         
         return allReuseViews
     }
+    
+    /// Creates constraints between self and provided view for top, bottom, leading and trailing sides.
+    @available(iOS 9.0, *)
+    func _constraintSides(to view: UIView) {
+        let constraints: [NSLayoutConstraint] = [
+            bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            topAnchor.constraint(equalTo: view.topAnchor)
+        ]
+        
+        translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate(constraints)
+    }
 }

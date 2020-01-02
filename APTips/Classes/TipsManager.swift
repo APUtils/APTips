@@ -43,22 +43,10 @@ public final class TipsManager {
         let tipView = TipView.create(tip: tip, for: view, displayMode: displayMode, deallocate: {
             completion?()
         }, completion: { tipView in
-            // Fade out and remove on completion
-            UIView.animate(withDuration: 0.3, animations: {
-                tipView.alpha = 0
-            }, completion: { _ in
-                tipView.removeFromSuperview()
-            })
+            tipView.removeFromSuperviewAnimated()
         })
         
-        hostView.addSubview(tipView)
-        
-        // Fade in
-        tipView.alpha = 0
-        hostView.layoutIfNeeded()
-        UIView.animate(withDuration: 0.3) {
-            tipView.alpha = 1
-        }
+        hostView.addTipViewAnimated(tipView)
     }
     
     /// Show specific tip once. It does it after 1s delay so this method can be called
@@ -82,23 +70,12 @@ public final class TipsManager {
                 self?.displayingTips.removeAll(tip.message)
                 completion?(true)
             }, completion: { tipView in
-                // Fade out and remove on completion
-                UIView.animate(withDuration: 0.3, animations: {
-                    tipView.alpha = 0
-                }, completion: { _ in
+                tipView.removeFromSuperviewAnimated {
                     self.displayedTips.append(tip.message)
-                    tipView.removeFromSuperview()
-                })
+                }
             })
             
-            hostView.addSubview(tipView)
-            
-            // Fade in
-            tipView.alpha = 0
-            hostView.layoutIfNeeded()
-            UIView.animate(withDuration: 0.3) {
-                tipView.alpha = 1
-            }
+            hostView.addTipViewAnimated(tipView)
         }
     }
     
@@ -157,6 +134,31 @@ private extension UIView {
         }
         
         return nil
+    }
+    
+    func addTipViewAnimated(_ tipView: TipView) {
+        UIView.performWithoutAnimation {
+            tipView.alpha = 0
+            tipView.containerView.transform = .init(scaleX: 0.5, y: 0.5)
+            addSubview(tipView)
+            layoutIfNeeded()
+        }
+        
+        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0, options: [], animations: {
+            tipView.alpha = 1
+            tipView.containerView.transform = .init(scaleX: 1, y: 1)
+            self.layoutIfNeeded()
+        }, completion: nil)
+    }
+    
+    func removeFromSuperviewAnimated(completion: (() -> Void)? = nil) {
+        // Fade out and remove on completion
+        UIView.animate(withDuration: 0.3, animations: {
+            self.alpha = 0
+        }, completion: { _ in
+            self.removeFromSuperview()
+            completion?()
+        })
     }
 }
 

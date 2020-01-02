@@ -15,6 +15,7 @@
 		0D5A7DBA23B4FC4A00E0687B /* Nimble.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = E2A7396D2260D99900E97D55 /* Nimble.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0D5A7DBB23B4FC4A00E0687B /* Quick.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = E2A7396C2260D99900E97D55 /* Quick.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0D8922F623B7B0A6004F625D /* UIView+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D8922F523B7B0A6004F625D /* UIView+Utils.swift */; };
+		0DACFA1323BE6BC200FA6301 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DACFA1223BE6BC200FA6301 /* Utils.swift */; };
 		3D3F7C1CF1369E40F12B2D13 /* APExtensions.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7678C2FFCB2321F5ED98006 /* APExtensions.framework */; };
 		E202681822117D03004CC28A /* APTips.h in Headers */ = {isa = PBXBuildFile; fileRef = E202681622117D03004CC28A /* APTips.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E275E06F229FF84E00E9900C /* APTips.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E202681322117D03004CC28A /* APTips.framework */; };
@@ -25,7 +26,7 @@
 		E2A739532260CFC700E97D55 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E2A739512260CFC700E97D55 /* Main.storyboard */; };
 		E2A739552260CFC800E97D55 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E2A739542260CFC800E97D55 /* Assets.xcassets */; };
 		E2A739582260CFC800E97D55 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E2A739562260CFC800E97D55 /* LaunchScreen.storyboard */; };
-		E2A739632260CFC800E97D55 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A739622260CFC800E97D55 /* Tests.swift */; };
+		E2A739632260CFC800E97D55 /* TipView_Spec.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A739622260CFC800E97D55 /* TipView_Spec.swift */; };
 		E2A7396E2260D99900E97D55 /* Quick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2A7396C2260D99900E97D55 /* Quick.framework */; };
 		E2A7396F2260D99900E97D55 /* Nimble.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2A7396D2260D99900E97D55 /* Nimble.framework */; };
 		E2C3135822DF6DF400D6797A /* Nimble_Snapshots.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40B2AC5FE675C1BC6FEA20DC /* Nimble_Snapshots.framework */; };
@@ -82,6 +83,7 @@
 		0D47704E23B78A57005209A5 /* TipView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TipView.swift; sourceTree = "<group>"; };
 		0D47704F23B78A57005209A5 /* TipsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TipsManager.swift; sourceTree = "<group>"; };
 		0D8922F523B7B0A6004F625D /* UIView+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Utils.swift"; sourceTree = "<group>"; };
+		0DACFA1223BE6BC200FA6301 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		27A65933230C2FF4F758F562 /* carthageUpdate.command */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; name = carthageUpdate.command; path = Scripts/Carthage/carthageUpdate.command; sourceTree = "<group>"; };
 		40B2AC5FE675C1BC6FEA20DC /* Nimble_Snapshots.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Nimble_Snapshots.framework; path = Carthage/Build/iOS/Nimble_Snapshots.framework; sourceTree = "<group>"; };
 		62DD6C247E24D3AA57872B5C /* podCheck.command */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; name = podCheck.command; path = ../podCheck.command; sourceTree = "<group>"; };
@@ -108,7 +110,7 @@
 		E2A739572260CFC800E97D55 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E2A739592260CFC800E97D55 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E2A7395E2260CFC800E97D55 /* Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		E2A739622260CFC800E97D55 /* Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
+		E2A739622260CFC800E97D55 /* TipView_Spec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TipView_Spec.swift; sourceTree = "<group>"; };
 		E2A739642260CFC800E97D55 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E2A7396C2260D99900E97D55 /* Quick.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quick.framework; path = Carthage/Build/iOS/Quick.framework; sourceTree = "<group>"; };
 		E2A7396D2260D99900E97D55 /* Nimble.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Nimble.framework; path = Carthage/Build/iOS/Nimble.framework; sourceTree = "<group>"; };
@@ -222,7 +224,8 @@
 				E2C3136922DF77F300D6797A /* __FailureDiffs */,
 				E2C3136822DF77F300D6797A /* __ReferenceImages */,
 				E2A739642260CFC800E97D55 /* Info.plist */,
-				E2A739622260CFC800E97D55 /* Tests.swift */,
+				E2A739622260CFC800E97D55 /* TipView_Spec.swift */,
+				0DACFA1223BE6BC200FA6301 /* Utils.swift */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -485,7 +488,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E2A739632260CFC800E97D55 /* Tests.swift in Sources */,
+				E2A739632260CFC800E97D55 /* TipView_Spec.swift in Sources */,
+				0DACFA1323BE6BC200FA6301 /* Utils.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

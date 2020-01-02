@@ -27,25 +27,16 @@ final class ViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        UIApplication.shared.doOnce(key: "ViewController.viewDidAppear") {
-            let vc = ViewController.create()
-            navigationController?.pushViewController(vc, animated: true) {
-                vc.remove(animated: true)
-                TipsManager.shared.showOnce(tip: .exampleOnce, for: vc.button, displayMode: .center) { [weak vc] success in
-                    guard success, let button = vc?.button else { return }
-                    TipsManager.shared.show(tip: .exampleCallbackAction, for: button, displayMode: .side)
-                }
-            }
+        TipsManager.shared.showOnce(tip: .exampleOnce, for: button, displayMode: .center) { [weak button] success in
+            guard success, let _button = button else { return }
+            TipsManager.shared.show(tip: .exampleCallbackAction, for: _button, displayMode: .center)
         }
     }
     
     // ******************************* MARK: - Actions
     
     @IBAction private func onActionTap(_ sender: UIButton) {
-        TipsManager.shared.show(tip: .exampleAction, for: sender, displayMode: .side) { [weak sender] in
-            guard let sender = sender else { return }
-            TipsManager.shared.show(tip: .exampleCallbackAction, for: sender, displayMode: .side)
-        }
+        TipsManager.shared.show(tip: .exampleAction, for: sender, displayMode: .side)
     }
 }
 
