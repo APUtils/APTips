@@ -6,7 +6,6 @@ import Nimble_Snapshots
 import Quick
 @testable import APTips
 
-@available(iOS 13.0, *)
 class TipView_Spec: QuickSpec {
     override func spec() {
         let tip = Tip(message: "An example unit layout test message for a tip")
@@ -20,7 +19,7 @@ class TipView_Spec: QuickSpec {
             button = UIButton(type: .system)
             button.setTitle("Button")
             button.borderOnePixelWidth = true
-            button.borderColor = .link
+            button.borderColor = #colorLiteral(red: 0, green: 0.478, blue: 1, alpha: 1)
             button.sizeToFit()
             button.center = hostView.bounds.center
             hostView.addSubview(button)
