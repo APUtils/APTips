@@ -6,7 +6,7 @@
 [![Platform](https://img.shields.io/cocoapods/p/APTips.svg?style=flat)](http://cocoapods.org/pods/APTips)
 [![CI Status](http://img.shields.io/travis/APUtils/APTips.svg?style=flat)](https://travis-ci.org/APUtils/APTips)
 
-TODO
+A simple tip that shows message to a user. It able to point to the element center and adjust its side depending on an available space but it uses only top and bottom sides. It able to handle complex UI with reusable cells and views in most cases. It also has an ability to show some tips only once so you won't need to write an additional logic for that.
 
 ## Example
 
@@ -14,9 +14,7 @@ Clone the repo and then open `Carthage Project/APTips.xcodeproj`
 
 ## GIF animation
 
-TODO
-
-<img src="Example/APTips/<#NAME#>.gif"/>
+<img src="Gifs/example.gif"/>
 
 ## Installation
 
@@ -41,7 +39,17 @@ pod 'APTips', '~> 1.0'
 
 ## Usage
 
-TODO
+Always show at the view's center:
+```swift
+let tip = Tip(message: "Example tip")
+TipsManager.shared.show(tip: tip, for: view, displayMode: .center)
+```
+
+Show once at the sender's side:
+```swift
+let tip = Tip(message: "Example once tip")
+TipsManager.shared.showOnce(tip: tip, for: sender, displayMode: .center)
+```
 
 See example and test projects for more details.
 

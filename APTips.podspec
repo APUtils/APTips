@@ -9,7 +9,7 @@
 Pod::Spec.new do |s|
   s.name             = 'APTips'
   s.version          = '1.0.1'
-  s.summary          = 'A short description of APTips.'
+  s.summary          = 'A simple tip to easily notify a user about something in a app.'
 
 # This description is used to generate tags and improve search results.
 #   * Think: What does it do? Why did you write it? What is the focus?
@@ -18,7 +18,7 @@ Pod::Spec.new do |s|
 #   * Finally, don't worry about the indent, CocoaPods strips it!
 
   s.description      = <<-DESC
-TODO: Add long description of the pod here.
+A simple tip that shows message to a user. It able to point to the element center and adjust its side depending on an available space but it uses only top and bottom sides. It able to handle complex UI with reusable cells and views in most cases. It also has an ability to show some tips only once so you won't need to write an additional logic for that.
                        DESC
 
   s.homepage         = 'https://github.com/APUtils/APTips'
@@ -29,7 +29,7 @@ TODO: Add long description of the pod here.
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
   s.ios.deployment_target = '9.0'
-  s.swift_versions = ['5.0']
+  s.swift_versions = ['5.1']
 
   s.source_files = 'APTips/Classes/**/*'
   

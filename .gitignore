@@ -45,3 +45,6 @@ Pods Project/Pods/
 /Carthage/
 
 *.orig
+
+# Tetsts
+__FailureDiffs
