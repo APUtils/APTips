@@ -77,6 +77,8 @@ public final class TipView: UIView {
         infoLabel.text = "i"
         infoLabel.textColor = Constants.View.infoLabelTextColor
         infoLabel.accessibilityIdentifier = "infoLabel"
+        infoLabel.accessibilityTraits = .staticText
+        infoLabel.isAccessibilityElement = true
         
         return infoLabel
     }()
@@ -90,6 +92,8 @@ public final class TipView: UIView {
         tipLabel.font = Constants.View.tipLabelFont
         tipLabel.textColor = Constants.View.tipLabelTextColor
         tipLabel.accessibilityIdentifier = "tipLabel"
+        tipLabel.accessibilityTraits = .staticText
+        tipLabel.isAccessibilityElement = true
         
         return tipLabel
     }()
@@ -153,6 +157,11 @@ public final class TipView: UIView {
         completionButton.translatesAutoresizingMaskIntoConstraints = false
         completionButton.addTarget(self, action: #selector(onTap(_:)), for: .touchUpInside)
         completionButton.accessibilityIdentifier = "completionButton"
+        completionButton.accessibilityTraits = .button
+        completionButton.isAccessibilityElement = true
+        if #available(iOS 13.0, *) {
+            completionButton.accessibilityRespondsToUserInteraction = true
+        }
         
         return completionButton
     }()
