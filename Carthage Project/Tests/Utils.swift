@@ -85,7 +85,7 @@ enum Utils {
 /// Set to true to update snapshots
 private let recordSnapshots = false
 
-func haveValidSnapshot(named name: String? = nil, identifier: String? = nil, usesDrawRect: Bool = false, tolerance: CGFloat? = nil) -> Predicate<Snapshotable> {
+func haveValidSnapshot(named name: String? = nil, identifier: String? = nil, usesDrawRect: Bool = false, tolerance: CGFloat? = 0.005) -> Predicate<Snapshotable> {
     if recordSnapshots {
         return recordSnapshot(named: name, identifier: identifier, usesDrawRect: usesDrawRect)
     } else {
