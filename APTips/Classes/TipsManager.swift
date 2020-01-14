@@ -43,19 +43,19 @@ public final class TipsManager {
         reusableViews = TipsManager.defaultReusableViews + views
     }
     
-//    /// Checks if once tip can be displayed right now.
-//    public func canOnceAndOncePerLaunchTipBeDisplayed(_ tip: Tip) -> Bool {
-//        return !displayedTips.contains(tip.id)
-//            && !displayingTips.contains(tip.id)
-//            && !oncePerLaunchTipDisplayed
-//    }
-//
-//    /// Checks if once tip can be displayed right now.
-//    public func canOnceTipBeDisplayed(_ tip: Tip) -> Bool {
-//        return !displayedTips.contains(tip.id)
-//            && !displayingTips.contains(tip.id)
-//            && !oncePerLaunchTipDisplayed
-//    }
+    /// Checks if tip can be shown right now.
+    public func canTipBeDisplayedRightNow(_ tip: Tip) -> Bool {
+        switch tip.showMode {
+        case .always: return true
+            
+        case .once: return !displayedTips.contains(tip.id)
+            && !displayingTips.contains(tip.id)
+            
+        case .onceAndOncePerLaunch: return !displayedTips.contains(tip.id)
+            && !displayingTips.contains(tip.id)
+            && !oncePerLaunchTipDisplayed
+        }
+    }
     
     public func show(tip: Tip, for view: @escaping @autoclosure () -> UIView?, completion: FailableCompletion? = nil) {
         switch tip.showMode {
