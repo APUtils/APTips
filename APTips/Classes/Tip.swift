@@ -8,10 +8,21 @@
 
 import Foundation
 
+/// Tip representation.
 public struct Tip {
+    
+    /// Tip's ID that will be used to identify this tip.
+    public var id: String
+    
+    /// Tip's message to show.
     public var message: String
     
-    public init(message: String) {
+    
+    /// - Parameters:
+    ///   - id: Tip's ID. If `nil` is passed tip's message will be used instead.
+    ///   - message: Tip's message.
+    public init(id: String? = nil, message: String) {
+        self.id = id ?? message
         self.message = message
     }
 }

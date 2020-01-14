@@ -1,5 +1,5 @@
-github "APUtils/APExtensions" "1765e3339e467fd70c9790cfa424561f3b39931d"
+github "APUtils/APExtensions" "02e0e1d4ec6d5fa627941d9f8606aa70560170d6"
 github "Quick/Nimble" "v8.0.5"
 github "Quick/Quick" "v2.2.0"
-github "ashfurrow/Nimble-Snapshots" "8.0.0"
+github "ashfurrow/Nimble-Snapshots" "8.1.1"
 github "uber/ios-snapshot-test-case" "6.2.0"

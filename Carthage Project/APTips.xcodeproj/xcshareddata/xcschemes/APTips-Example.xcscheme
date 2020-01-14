@@ -15,8 +15,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "E2A7394A2260CFC700E97D55"
-               BuildableName = "Example.app"
-               BlueprintName = "Example"
+               BuildableName = "APTips-Example.app"
+               BlueprintName = "APTips-Example"
                ReferencedContainer = "container:APTips.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -31,8 +31,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "E2A7394A2260CFC700E97D55"
-            BuildableName = "Example.app"
-            BlueprintName = "Example"
+            BuildableName = "APTips-Example.app"
+            BlueprintName = "APTips-Example"
             ReferencedContainer = "container:APTips.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -64,8 +64,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "E2A7394A2260CFC700E97D55"
-            BuildableName = "Example.app"
-            BlueprintName = "Example"
+            BuildableName = "APTips-Example.app"
+            BlueprintName = "APTips-Example"
             ReferencedContainer = "container:APTips.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -93,8 +93,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "E2A7394A2260CFC700E97D55"
-            BuildableName = "Example.app"
-            BlueprintName = "Example"
+            BuildableName = "APTips-Example.app"
+            BlueprintName = "APTips-Example"
             ReferencedContainer = "container:APTips.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

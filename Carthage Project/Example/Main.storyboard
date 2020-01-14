@@ -156,9 +156,9 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" id="JAv-Bn-baZ">
-                        <barButtonItem key="leftBarButtonItem" style="plain" id="Xb1-bP-kwm">
+                        <barButtonItem key="leftBarButtonItem" id="Xb1-bP-kwm">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="vLu-KW-Fk7">
-                                <rect key="frame" x="350" y="7" width="44" height="30"/>
+                                <rect key="frame" x="20" y="7" width="44" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Action"/>
                                 <connections>
@@ -166,7 +166,7 @@
                                 </connections>
                             </button>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" style="plain" id="njT-ya-hG5">
+                        <barButtonItem key="rightBarButtonItem" id="njT-ya-hG5">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="oud-JU-0zG">
                                 <rect key="frame" x="350" y="7" width="44" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -179,7 +179,9 @@
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
-                        <outlet property="button" destination="soT-zf-3b2" id="TIs-8D-vo9"/>
+                        <outlet property="centerButton" destination="soT-zf-3b2" id="TIs-8D-vo9"/>
+                        <outlet property="navigationBarLeftButton" destination="vLu-KW-Fk7" id="YHu-x4-4oy"/>
+                        <outlet property="navigationBarRightButton" destination="oud-JU-0zG" id="ltC-gu-S4g"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

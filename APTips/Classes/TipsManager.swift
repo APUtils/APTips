@@ -11,8 +11,12 @@ import Foundation
 /// Manager that is responsible for showing tips.
 public final class TipsManager {
     
+    /// Tip display completion.
     public typealias Completion = () -> Void
-    public typealias FailableCompletion = (Bool) -> Void
+    
+    /// Failable completion.
+    /// - parameter success: Indicates if a tip was displayed for a user.
+    public typealias FailableCompletion = (_ success: Bool) -> Void
     
     // ******************************* MARK: - Private Properties
     
@@ -21,6 +25,8 @@ public final class TipsManager {
     
     /// Tips that are displaying atm
     private var displayingTips: [String] = []
+    
+    private var oncePerLaunchTipDisplayed = false
     
     // ******************************* MARK: - Initialization and Setup
     
@@ -38,6 +44,11 @@ public final class TipsManager {
     }
     
     /// Show tip immediatelly.
+    /// - Parameters:
+    ///   - tip: A tip to display
+    ///   - view: View to point at.
+    ///   - displayMode: Tip's display mode.
+    ///   - completion: Competion to call on tip's dismiss.
     public func show(tip: Tip, for view: UIView, displayMode: TipView.DisplayMode, completion: Completion? = nil) {
         let hostView = view._firstViewController?.view ?? view._rootView
         let tipView = TipView.create(tip: tip, for: view, displayMode: displayMode, deallocate: {
@@ -51,27 +62,54 @@ public final class TipsManager {
     
     /// Show specific tip once. It does it after 1s delay so this method can be called
     /// even before view is added to view hierarchy for simplicity.
-    public func showOnce(tip: Tip, for view: UIView, displayMode: TipView.DisplayMode, completion: FailableCompletion? = nil) {
-        guard !displayedTips.contains(tip.message) else { completion?(false); return }
-        guard !displayingTips.contains(tip.message) else { completion?(false); return }
-        displayingTips.append(tip.message)
+    /// Additionally, it assures that there will be only one tip displayed per application launch.
+    /// This way you can display some education tips without throwing all of them to the user's face at once.
+    /// - Parameters:
+    ///   - tip: A tip to display
+    ///   - view: View to point at. You may pass not yet initialized force-unwrapped view parameter e.g. if you call this method in vc's `awakeFromNib()`.
+    ///   - displayMode: Tip's display mode.
+    ///   - completion: Competion to call on tip's dismiss.
+    public func showOnceAndOncePerLaunch(tip: Tip, for view: @escaping @autoclosure () -> UIView?, displayMode: TipView.DisplayMode, completion: FailableCompletion? = nil) {
+        if oncePerLaunchTipDisplayed { completion?(false); return }
+        oncePerLaunchTipDisplayed = true
+        
+        showOnce(tip: tip, for: view(), displayMode: displayMode) { success in
+            if !success {
+                self.oncePerLaunchTipDisplayed = false
+            }
+            
+            completion?(success)
+        }
+    }
+    
+    /// Show specific tip once. It does it after 1s delay so this method can be called
+    /// even before view is added to view hierarchy for simplicity.
+    /// - Parameters:
+    ///   - tip: A tip to display
+    ///   - view: View to point at. You may pass not yet initialized force-unwrapped view parameter e.g. if you call this method in vc's `awakeFromNib()`.
+    ///   - displayMode: Tip's display mode.
+    ///   - completion: Competion to call on tip's dismiss.   
+    public func showOnce(tip: Tip, for view: @escaping @autoclosure () -> UIView?, displayMode: TipView.DisplayMode, completion: FailableCompletion? = nil) {
+        guard !displayedTips.contains(tip.id) else { completion?(false); return }
+        guard !displayingTips.contains(tip.id) else { completion?(false); return }
+        displayingTips.append(tip.id)
         
         // Workaround for simplicity. There might be some animations ongoing, e.g. scrolling
         // so let all of them finish first. Also, we might need to wait before view is added to view hierarchy.
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [weak view] in
-            guard let view = view else {
-                self.displayingTips.removeAll(tip.message)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            guard let view = view() else {
+                self.displayingTips.removeAll(tip.id)
                 completion?(false)
                 return
             }
             
             let hostView = view._firstViewController?.view ?? view._rootView
             let tipView = TipView.create(tip: tip, for: view, displayMode: displayMode, deallocate: { [weak self] in
-                self?.displayingTips.removeAll(tip.message)
+                self?.displayingTips.removeAll(tip.id)
                 completion?(true)
             }, completion: { tipView in
                 tipView.removeFromSuperviewAnimated {
-                    self.displayedTips.append(tip.message)
+                    self.displayedTips.append(tip.id)
                 }
             })
             
