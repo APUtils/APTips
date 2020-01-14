@@ -24,15 +24,15 @@ final class ViewController: UIViewController {
         super.init(coder: coder)
         
         // View and outlets not yet initialized. Still, this one works!
-        TipsManager.shared.showOnceAndOncePerLaunch(tip: .exampleLaunch1, for: self.navigationBarLeftButton)
+        TipsManager.shared.show(tip: .exampleLaunch1, for: self.navigationBarLeftButton)
     }
     
     override func awakeFromNib() {
         super.awakeFromNib()
         
         // Outlets not yet initialized. Still, this one works!
-        TipsManager.shared.showOnceAndOncePerLaunch(tip: .exampleLaunch2, for: self.navigationBarRightButton)
-        TipsManager.shared.showOnceAndOncePerLaunch(tip: .exampleLaunch3, for: self.navigationBarLeftButton)
+        TipsManager.shared.show(tip: .exampleLaunch2, for: self.navigationBarRightButton)
+        TipsManager.shared.show(tip: .exampleLaunch3, for: self.navigationBarLeftButton)
     }
     
     override func viewDidLoad() {
@@ -44,7 +44,7 @@ final class ViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        TipsManager.shared.showOnce(tip: .exampleOnce, for: self.centerButton) { [weak centerButton] success in
+        TipsManager.shared.show(tip: .exampleOnce, for: self.centerButton) { [weak centerButton] success in
             guard success, let _centerButton = centerButton else { return }
             TipsManager.shared.show(tip: .exampleCallbackAction, for: _centerButton)
         }
@@ -60,12 +60,12 @@ final class ViewController: UIViewController {
 // ******************************* MARK: - Tips
 
 extension Tip {
-    static let exampleOnce = Tip(message: "Example show once tip", displayMode: .center)
-    static let exampleAction = Tip(message: "Example action tip with long text message", displayMode: .side)
-    static let exampleCallbackAction = Tip(message: "Example callback action tip which is called after initial one with long text message", displayMode: .center)
-    static let exampleLaunch1 = Tip(message: "Tip message that will be shown on the first launch", displayMode: .center)
-    static let exampleLaunch2 = Tip(message: "Tip message that will be shown on the second launch", displayMode: .side)
-    static let exampleLaunch3 = Tip(message: "Tip message that will be shown on the third launch", displayMode: .side)
+    static let exampleOnce = Tip(message: "Example show once tip", pointingMode: .center, showMode: .once)
+    static let exampleAction = Tip(message: "Example action tip with long text message", pointingMode: .side, showMode: .always)
+    static let exampleCallbackAction = Tip(message: "Example callback action tip which is called after initial one with long text message", pointingMode: .center, showMode: .always)
+    static let exampleLaunch1 = Tip(message: "Tip message that will be shown on the first launch", pointingMode: .center, showMode: .onceAndOncePerLaunch)
+    static let exampleLaunch2 = Tip(message: "Tip message that will be shown on the second launch", pointingMode: .side, showMode: .onceAndOncePerLaunch)
+    static let exampleLaunch3 = Tip(message: "Tip message that will be shown on the third launch", pointingMode: .side, showMode: .onceAndOncePerLaunch)
 }
 
 // ******************************* MARK: - InstantiatableFromStoryboard

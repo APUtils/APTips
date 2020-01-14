@@ -28,30 +28,30 @@ class TipView_Spec: QuickSpec {
         
         it("should have proper layout for center display mode and bottom position") {
             button.center.y += 10
-            showTipView(displayMode: .center)
+            showTipView(pointingMode: .center)
             expect(hostView).to(haveValidSnapshot())
         }
         
         it("should have proper layout for center display mode and top position") {
             button.center.y -= 10
-            showTipView(displayMode: .center)
+            showTipView(pointingMode: .center)
             expect(hostView).to(haveValidSnapshot())
         }
         
         it("should have proper layout for side display mode and bottom position") {
             button.center.y += 10
-            showTipView(displayMode: .side)
+            showTipView(pointingMode: .side)
             expect(hostView).to(haveValidSnapshot())
         }
         
         it("should have proper layout for side display mode and top position") {
             button.center.y -= 10
-            showTipView(displayMode: .side)
+            showTipView(pointingMode: .side)
             expect(hostView).to(haveValidSnapshot())
         }
         
-        func showTipView(displayMode: TipView.DisplayMode) {
-            let tipView = TipView.create(tip: tip, for: button, displayMode: displayMode, completion: { _ in })
+        func showTipView(pointingMode: TipView.PointingMode) {
+            let tipView = TipView.create(tip: tip, for: button, pointingMode: pointingMode, completion: { _ in })
             hostView.addSubview(tipView)
             hostView.layoutIfNeeded()
         }

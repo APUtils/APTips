@@ -11,16 +11,29 @@ import Foundation
 /// Tip representation.
 public struct Tip {
     
-    // ******************************* MARK: - Display Mode
+    // ******************************* MARK: - Enums
     
-    /// Display mode for a tip.
-    public enum DisplayMode {
+    /// Pointing mode for a tip.
+    public enum PointingMode {
         
         /// Tip will be displayed from a source center.
         case center
         
         /// Tip will be displayed from a source top or bottom side.
         case side
+    }
+    
+    /// Show mode for a tip.
+    public enum ShowMode {
+        
+        /// Always an immediatelly show a tip.
+        case always
+        
+        /// Show once after 1s delay.
+        case once
+        
+        /// Show once after 1s delay and assure there won't be more than one tip of that type per app launch.
+        case onceAndOncePerLaunch
     }
     
     // ******************************* MARK: - Properties
@@ -31,15 +44,22 @@ public struct Tip {
     /// Tip's message to show.
     public var message: String
     
-    public var displayMode: DisplayMode
+    /// Specifies tip's pointing point.
+    public var pointingMode: PointingMode
+    
+    ///  Specifies how tip will be shown.
+    public var showMode: ShowMode
     
     
     /// - Parameters:
     ///   - id: Tip's ID. If `nil` is passed tip's message will be used instead.
     ///   - message: Tip's message.
-    public init(id: String? = nil, message: String, displayMode: DisplayMode) {
+    ///   - pointingMode: Tip's pointing mode.
+    ///   - showMode: Tip's show mode.
+    public init(id: String? = nil, message: String, pointingMode: PointingMode, showMode: ShowMode) {
         self.id = id ?? message
         self.message = message
-        self.displayMode = displayMode
+        self.pointingMode = pointingMode
+        self.showMode = showMode
     }
 }

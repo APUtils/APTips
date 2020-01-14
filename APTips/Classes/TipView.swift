@@ -156,7 +156,7 @@ public final class TipView: UIView {
     
     // ******************************* MARK: - Properties
     
-    private var displayMode: Tip.DisplayMode = .side
+    private var pointingMode: Tip.PointingMode = .side
     private var completion: Completion = { _ in }
     private var deallocate: Deallocate = {}
     private weak var sourceView: UIView?
@@ -197,7 +197,7 @@ public final class TipView: UIView {
         // Source and tip should have host view
         guard let hostView = sourceView._findCommonSuperview(with: self) else { return }
         
-        switch displayMode {
+        switch pointingMode {
         case .side:
             if shouldShowFromTop(sourceView: sourceView, hostView: hostView) {
                 bottomArrowView.alpha = 1
@@ -264,7 +264,7 @@ public final class TipView: UIView {
         guard let hostView = sourceView._findCommonSuperview(with: self) else { return }
         let sourceViewFrameInHostView = sourceView.convert(sourceView.bounds, to: hostView)
         
-        switch displayMode {
+        switch pointingMode {
         case .side:
             if shouldShowFromTop(sourceView: sourceView, hostView: hostView) {
                 containerView.adjustAnchorPointKeepingPosition(.init(x: sourceViewFrameInHostView.midX, y: sourceViewFrameInHostView.minY))
@@ -308,7 +308,7 @@ extension TipView {
     static func create(tip: Tip, for source: UIView, deallocate: @escaping Deallocate = {}, completion: @escaping Completion) -> TipView {
         let view = createFromCode()
         view.tipLabel.text = tip.message
-        view.displayMode = tip.displayMode
+        view.pointingMode = tip.pointingMode
         view.completion = completion
         view.deallocate = deallocate
         view.sourceView = source

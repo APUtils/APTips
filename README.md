@@ -41,14 +41,14 @@ pod 'APTips', '~> 1.0'
 
 Always show at the view's center:
 ```swift
-let tip = Tip(message: "Example tip")
-TipsManager.shared.show(tip: tip, for: view, displayMode: .center)
+let tip = Tip(message: "Example tip", pointingMode: .center, showMode: .always)
+TipsManager.shared.show(tip: tip, for: view)
 ```
 
 Show once at the sender's side:
 ```swift
-let tip = Tip(message: "Example once tip")
-TipsManager.shared.showOnce(tip: tip, for: sender, displayMode: .center)
+let tip = Tip(message: "Example once tip", pointingMode: .center, showMode: .once)
+TipsManager.shared.show(tip: tip, for: sender)
 ```
 
 See example and test projects for more details.

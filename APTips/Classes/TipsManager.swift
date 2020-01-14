@@ -43,12 +43,34 @@ public final class TipsManager {
         reusableViews = TipsManager.defaultReusableViews + views
     }
     
+//    /// Checks if once tip can be displayed right now.
+//    public func canOnceAndOncePerLaunchTipBeDisplayed(_ tip: Tip) -> Bool {
+//        return !displayedTips.contains(tip.id)
+//            && !displayingTips.contains(tip.id)
+//            && !oncePerLaunchTipDisplayed
+//    }
+//
+//    /// Checks if once tip can be displayed right now.
+//    public func canOnceTipBeDisplayed(_ tip: Tip) -> Bool {
+//        return !displayedTips.contains(tip.id)
+//            && !displayingTips.contains(tip.id)
+//            && !oncePerLaunchTipDisplayed
+//    }
+    
+    public func show(tip: Tip, for view: @escaping @autoclosure () -> UIView?, completion: FailableCompletion? = nil) {
+        switch tip.showMode {
+        case .always: show(tip: tip, for: view()!) { completion?(true) }
+        case .once: showOnce(tip: tip, for: view(), completion: completion)
+        case .onceAndOncePerLaunch: showOnceAndOncePerLaunch(tip: tip, for: view(), completion: completion)
+        }
+    }
+    
     /// Show tip immediatelly.
     /// - Parameters:
     ///   - tip: A tip to display
     ///   - view: View to point at.
     ///   - completion: Competion to call on tip's dismiss.
-    public func show(tip: Tip, for view: UIView, completion: Completion? = nil) {
+    private func show(tip: Tip, for view: UIView, completion: Completion? = nil) {
         let hostView = view._firstViewController?.view ?? view._rootView
         let tipView = TipView.create(tip: tip, for: view, deallocate: {
             completion?()
@@ -67,7 +89,7 @@ public final class TipsManager {
     ///   - tip: A tip to display
     ///   - view: View to point at. You may pass not yet initialized force-unwrapped view parameter e.g. if you call this method in vc's `awakeFromNib()`.
     ///   - completion: Competion to call on tip's dismiss.
-    public func showOnceAndOncePerLaunch(tip: Tip, for view: @escaping @autoclosure () -> UIView?, completion: FailableCompletion? = nil) {
+    private func showOnceAndOncePerLaunch(tip: Tip, for view: @escaping @autoclosure () -> UIView?, completion: FailableCompletion? = nil) {
         if oncePerLaunchTipDisplayed { completion?(false); return }
         oncePerLaunchTipDisplayed = true
         
@@ -86,7 +108,7 @@ public final class TipsManager {
     ///   - tip: A tip to display
     ///   - view: View to point at. You may pass not yet initialized force-unwrapped view parameter e.g. if you call this method in vc's `awakeFromNib()`.
     ///   - completion: Competion to call on tip's dismiss.   
-    public func showOnce(tip: Tip, for view: @escaping @autoclosure () -> UIView?, completion: FailableCompletion? = nil) {
+    private func showOnce(tip: Tip, for view: @escaping @autoclosure () -> UIView?, completion: FailableCompletion? = nil) {
         guard !displayedTips.contains(tip.id) else { completion?(false); return }
         guard !displayingTips.contains(tip.id) else { completion?(false); return }
         displayingTips.append(tip.id)
