@@ -10,18 +10,6 @@ import UIKit
 
 public final class TipView: UIView {
     
-    // ******************************* MARK: - Display Mode
-    
-    /// Display mode for a tip.
-    public enum DisplayMode {
-        
-        /// Tip will be displayed from a source center.
-        case center
-        
-        /// Tip will be displayed from a source top or bottom side.
-        case side
-    }
-    
     typealias Completion = (TipView) -> Void
     typealias Deallocate = () -> Void
     
@@ -168,7 +156,7 @@ public final class TipView: UIView {
     
     // ******************************* MARK: - Properties
     
-    private var displayMode: DisplayMode = .side
+    private var displayMode: Tip.DisplayMode = .side
     private var completion: Completion = { _ in }
     private var deallocate: Deallocate = {}
     private weak var sourceView: UIView?
@@ -317,10 +305,10 @@ public extension TipView.Constants {
 
 extension TipView {
     
-    static func create(tip: Tip, for source: UIView, displayMode: DisplayMode, deallocate: @escaping Deallocate = {}, completion: @escaping Completion) -> TipView {
+    static func create(tip: Tip, for source: UIView, deallocate: @escaping Deallocate = {}, completion: @escaping Completion) -> TipView {
         let view = createFromCode()
         view.tipLabel.text = tip.message
-        view.displayMode = displayMode
+        view.displayMode = tip.displayMode
         view.completion = completion
         view.deallocate = deallocate
         view.sourceView = source

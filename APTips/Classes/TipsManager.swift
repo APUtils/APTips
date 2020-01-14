@@ -47,11 +47,10 @@ public final class TipsManager {
     /// - Parameters:
     ///   - tip: A tip to display
     ///   - view: View to point at.
-    ///   - displayMode: Tip's display mode.
     ///   - completion: Competion to call on tip's dismiss.
-    public func show(tip: Tip, for view: UIView, displayMode: TipView.DisplayMode, completion: Completion? = nil) {
+    public func show(tip: Tip, for view: UIView, completion: Completion? = nil) {
         let hostView = view._firstViewController?.view ?? view._rootView
-        let tipView = TipView.create(tip: tip, for: view, displayMode: displayMode, deallocate: {
+        let tipView = TipView.create(tip: tip, for: view, deallocate: {
             completion?()
         }, completion: { tipView in
             tipView.removeFromSuperviewAnimated()
@@ -67,13 +66,12 @@ public final class TipsManager {
     /// - Parameters:
     ///   - tip: A tip to display
     ///   - view: View to point at. You may pass not yet initialized force-unwrapped view parameter e.g. if you call this method in vc's `awakeFromNib()`.
-    ///   - displayMode: Tip's display mode.
     ///   - completion: Competion to call on tip's dismiss.
-    public func showOnceAndOncePerLaunch(tip: Tip, for view: @escaping @autoclosure () -> UIView?, displayMode: TipView.DisplayMode, completion: FailableCompletion? = nil) {
+    public func showOnceAndOncePerLaunch(tip: Tip, for view: @escaping @autoclosure () -> UIView?, completion: FailableCompletion? = nil) {
         if oncePerLaunchTipDisplayed { completion?(false); return }
         oncePerLaunchTipDisplayed = true
         
-        showOnce(tip: tip, for: view(), displayMode: displayMode) { success in
+        showOnce(tip: tip, for: view()) { success in
             if !success {
                 self.oncePerLaunchTipDisplayed = false
             }
@@ -87,9 +85,8 @@ public final class TipsManager {
     /// - Parameters:
     ///   - tip: A tip to display
     ///   - view: View to point at. You may pass not yet initialized force-unwrapped view parameter e.g. if you call this method in vc's `awakeFromNib()`.
-    ///   - displayMode: Tip's display mode.
     ///   - completion: Competion to call on tip's dismiss.   
-    public func showOnce(tip: Tip, for view: @escaping @autoclosure () -> UIView?, displayMode: TipView.DisplayMode, completion: FailableCompletion? = nil) {
+    public func showOnce(tip: Tip, for view: @escaping @autoclosure () -> UIView?, completion: FailableCompletion? = nil) {
         guard !displayedTips.contains(tip.id) else { completion?(false); return }
         guard !displayingTips.contains(tip.id) else { completion?(false); return }
         displayingTips.append(tip.id)
@@ -104,7 +101,7 @@ public final class TipsManager {
             }
             
             let hostView = view._firstViewController?.view ?? view._rootView
-            let tipView = TipView.create(tip: tip, for: view, displayMode: displayMode, deallocate: { [weak self] in
+            let tipView = TipView.create(tip: tip, for: view, deallocate: { [weak self] in
                 self?.displayingTips.removeAll(tip.id)
                 completion?(true)
             }, completion: { tipView in
