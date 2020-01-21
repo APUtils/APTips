@@ -122,7 +122,13 @@ public final class TipsManager {
                 return
             }
             
-            let hostView = view._firstViewController?.view ?? view._rootView
+            guard let window = view.window else {
+                print("Can not present a tip on a view outside of a view hierarchy. View: \(view)")
+                self.displayingTips.removeAll(tip.message)
+                return
+            }
+            
+            let hostView = view._firstViewController?.view ?? window
             let tipView = TipView.create(tip: tip, for: view, deallocate: { [weak self] in
                 self?.displayingTips.removeAll(tip.id)
                 completion?(true)
