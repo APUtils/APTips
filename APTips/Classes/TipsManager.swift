@@ -124,7 +124,13 @@ public final class TipsManager {
             
             guard let window = view.window else {
                 print("Can not present a tip on a view outside of a view hierarchy. View: \(view)")
-                self.displayingTips.removeAll(tip.message)
+                self.displayingTips.removeAll(tip.id)
+                return
+            }
+            
+            guard view.isVisible else {
+                print("Can not present a tip on an invisible view. View: \(view)")
+                self.displayingTips.removeAll(tip.id)
                 return
             }
             
@@ -223,6 +229,25 @@ private extension UIView {
             completion?()
         })
     }
+    
+    /// Consider view with alpha <0.01 as invisible because it stops receiving touches at this level:
+    /// "This method ignores view objects that are hidden, that have disabled user interactions, or have an alpha level less than 0.01".
+    /// This one also checks all superviews for the same parameters.
+    var isVisible: Bool {
+        return !isHidden && alpha >= 0.01 && superviews.reduce(true) { $0 && !$1.isHidden && $1.alpha >= 0.01 }
+    }
+    
+    #if compiler(>=5)
+    /// All view superviews to the top most
+    var superviews: DropFirstSequence<UnfoldSequence<UIView, (UIView?, Bool)>> {
+        return sequence(first: self, next: { $0.superview }).dropFirst(1)
+    }
+    #else
+    /// All view superviews to the top most
+    var superviews: AnySequence<UIView> {
+        return sequence(first: self, next: { $0.superview }).dropFirst(1)
+    }
+    #endif
 }
 
 private extension Array where Element: Equatable {
