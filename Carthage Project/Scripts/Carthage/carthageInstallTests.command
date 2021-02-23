@@ -8,8 +8,14 @@ set -e
 # Assume scripts are placed in /Scripts/Carthage dir
 base_dir=$(dirname "$0")
 cd "$base_dir"
+
+# includes
+. ./utils.sh
+
 cd ..
 cd ..
+
+applyXcode12Workaround
 
 # Try one level up if didn't find Cartfile.
 if [ ! -f "Cartfile" ]; then
@@ -36,6 +42,7 @@ cartSum=`{ cat Cartfile.resolved; xcrun swift -version; } | md5`
 
 if [ "$prevSum" != "$cartSum" ] || [ ! -d "Carthage/Build/iOS" ]; then
     echo "Carthage frameworks are outdated. Updating..."
+    rm "$cart_sum_file" || :
 
     # Install needed frameworks.
     carthage bootstrap --platform iOS --cache-builds --use-ssh

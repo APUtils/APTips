@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0D0AB83625E5312500D87F3F /* APExtensions.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D7678C2FFCB2321F5ED98006 /* APExtensions.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0D47705123B78A57005209A5 /* Tip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D47704D23B78A57005209A5 /* Tip.swift */; };
 		0D47705223B78A57005209A5 /* TipView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D47704E23B78A57005209A5 /* TipView.swift */; };
 		0D47705323B78A57005209A5 /* TipsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D47704F23B78A57005209A5 /* TipsManager.swift */; };
@@ -70,6 +71,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				0D0AB83625E5312500D87F3F /* APExtensions.framework in Embed Frameworks */,
 				E275E08422A03A8900E9900C /* APTips.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -301,7 +303,6 @@
 				E2A739472260CFC700E97D55 /* Sources */,
 				E2A739482260CFC700E97D55 /* Frameworks */,
 				E2A739492260CFC700E97D55 /* Resources */,
-				7A78314AEA7299684D67A83C /* Carthage Copy */,
 				E275E08722A03A8900E9900C /* Embed Frameworks */,
 			);
 			buildRules = (
@@ -422,26 +423,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/bash;
 			shellScript = "source ~/.bash_profile\nenv -i GITHUB_ACCESS_TOKEN=\"$GITHUB_ACCESS_TOKEN\" DEVELOPER_DIR=\"$DEVELOPER_DIR\" PATH=\"$PATH\" bash \"Scripts/Carthage/carthageInstall.command\"\n";
-		};
-		7A78314AEA7299684D67A83C /* Carthage Copy */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"$(SRCROOT)/Carthage/Build/iOS/APExtensions.framework",
-			);
-			name = "Carthage Copy";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/APExtensions.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "/usr/local/bin/carthage copy-frameworks\n";
 		};
 		E67432110B43CFE285604644 /* Carthage Install */ = {
 			isa = PBXShellScriptBuildPhase;
