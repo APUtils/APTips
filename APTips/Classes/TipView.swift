@@ -17,8 +17,8 @@ public final class TipView: UIView {
     
     public enum Constants {
         public enum View {
-            public static var contentBackgroundColor: UIColor = #colorLiteral(red: 0.1294117647, green: 0.1333333333, blue: 0.137254902, alpha: 0.9)
-            public static var contentCornerRadius: CGFloat = 8
+            public static var backgroundColor: UIColor = #colorLiteral(red: 0.1294117647, green: 0.1333333333, blue: 0.137254902, alpha: 0.9)
+            public static var cornerRadius: CGFloat = 8
             public static var infoBackgroundColor: UIColor = #colorLiteral(red: 0.7411764706, green: 0.7490196078, blue: 0.7568627451, alpha: 1)
             public static var infoLabelTextColor: UIColor = #colorLiteral(red: 0.1294117647, green: 0.1333333333, blue: 0.137254902, alpha: 1)
             public static var showInfoView: Bool = false
@@ -31,7 +31,7 @@ public final class TipView: UIView {
     private(set) lazy var containerView: UIView = {
         let containerView = UIView()
         containerView.translatesAutoresizingMaskIntoConstraints = false
-        containerView.backgroundColor = .clear
+        containerView.backgroundColor = Constants.View.backgroundColor
         containerView.accessibilityIdentifier = "containerView"
         
         return containerView
@@ -41,8 +41,7 @@ public final class TipView: UIView {
     private(set) lazy var contentView: UIView = {
         let contentView = UIView()
         contentView.translatesAutoresizingMaskIntoConstraints = false
-        contentView.backgroundColor = Constants.View.contentBackgroundColor
-        contentView.layer.cornerRadius = Constants.View.contentCornerRadius
+        contentView.backgroundColor = .clear
         contentView.accessibilityIdentifier = "contentView"
         
         return contentView
@@ -86,55 +85,19 @@ public final class TipView: UIView {
         return tipLabel
     }()
     
-    // TODO: Ideally we should have whole container masked instead of having tip views. This will prevent animation bug like pixel gap between tip view and container view.
-    private lazy var bottomTipShapeLayerPath: UIBezierPath = {
-        // TODO: Do arrow rounded if needed later
-        let bottomTipShapeLayerPath = UIBezierPath()
-        bottomTipShapeLayerPath.move(to: .zero)
-        bottomTipShapeLayerPath.addLine(to: .init(x: Constants.Layout.tipWidth / 2, y: Constants.Layout.tipHeight))
-        bottomTipShapeLayerPath.addLine(to: .init(x: Constants.Layout.tipWidth, y: 0))
-        bottomTipShapeLayerPath.addLine(to: .zero)
-        
-        return bottomTipShapeLayerPath
-    }()
-    
-    private lazy var bottomTipShapeLayer: CAShapeLayer = {
-        let bottomTipShapeLayer = CAShapeLayer()
-        bottomTipShapeLayer.path = bottomTipShapeLayerPath.cgPath
-        
-        return bottomTipShapeLayer
-    }()
-    
     private(set) lazy var bottomArrowView: UIView = {
         let bottomArrowView = UIView(frame: .init(x: 0, y: 0, width: Constants.Layout.tipWidth, height: Constants.Layout.tipHeight))
         bottomArrowView.translatesAutoresizingMaskIntoConstraints = false
-        bottomArrowView.backgroundColor = Constants.View.contentBackgroundColor
-        bottomArrowView.layer.mask = bottomTipShapeLayer
+        bottomArrowView.backgroundColor = .clear
         bottomArrowView.accessibilityIdentifier = "bottomArrowView"
         
         return bottomArrowView
     }()
     
-    private lazy var topTipShapeLayerPath: UIBezierPath = {
-        let topTipShapeLayerPath = bottomTipShapeLayerPath.copy() as! UIBezierPath
-        topTipShapeLayerPath.apply(.init(translationX: -Constants.Layout.tipWidth, y: -Constants.Layout.tipHeight))
-        topTipShapeLayerPath.apply(.init(rotationAngle: .pi))
-        
-        return topTipShapeLayerPath
-    }()
-    
-    private lazy var topTipShapeLayer: CAShapeLayer = {
-        let topTipShapeLayer = CAShapeLayer()
-        topTipShapeLayer.path = topTipShapeLayerPath.cgPath
-        
-        return topTipShapeLayer
-    }()
-    
     private(set) lazy var topArrowView: UIView = {
         let topArrowView = UIView(frame: .init(x: 0, y: 0, width: Constants.Layout.tipWidth, height: Constants.Layout.tipHeight))
         topArrowView.translatesAutoresizingMaskIntoConstraints = false
-        topArrowView.backgroundColor = Constants.View.contentBackgroundColor
-        topArrowView.layer.mask = topTipShapeLayer
+        topArrowView.backgroundColor = .clear
         topArrowView.accessibilityIdentifier = "topArrowView"
         
         return topArrowView
@@ -169,8 +132,12 @@ public final class TipView: UIView {
         // TODO: There is actually an undefined behavior on reuse but right now it should be ok. Fix later if needed.
         sourceView?._allReusableViews.forEach {
             $0._onDidMoveToSuperview = { [weak self] in
-                self?.configureBottomConstraintIfNeeded()
+                self?.configurePositionConstraintIfNeeded()
             }
+        }
+        
+        containerView._onDidLayoutSubviews = { [weak self] in
+            self?.layoutPathIfNeeded()
         }
     }
     
@@ -185,11 +152,11 @@ public final class TipView: UIView {
         
         if let superview = superview {
             _constraintSides(to: superview)
-            configureBottomConstraintIfNeeded()
+            configurePositionConstraintIfNeeded()
         }
     }
     
-    private func configureBottomConstraintIfNeeded() {
+    private func configurePositionConstraintIfNeeded() {
         // Reconfigure only if constraint is not yet set or become inactive
         guard positionConstraint?.isActive != true else { return }
         guard let sourceView = sourceView else { return }
@@ -282,6 +249,67 @@ public final class TipView: UIView {
         let topSpace = sourceViewFrameInHostView.minY
         let bottomSpace = hostView.bounds.maxY - sourceViewFrameInHostView.maxY
         return topSpace > bottomSpace
+    }
+    
+    private func layoutPathIfNeeded() {
+        let contentViewFrameInContainer = contentView.convert(contentView.bounds, to: containerView)
+        
+        let shapeLayerPath = UIBezierPath()
+        let radius = Constants.View.cornerRadius
+        shapeLayerPath.move(to: contentViewFrameInContainer.origin.offset(x: 0, y: radius))
+        shapeLayerPath.addArc(withCenter: contentViewFrameInContainer.origin.offset(x: radius, y: radius),
+                              radius: radius,
+                              startAngle: .pi,
+                              endAngle: .pi * 1.5,
+                              clockwise: true)
+        
+        if topArrowView.alpha == 1 {
+            let topArrowViewFrameInContainer = topArrowView.convert(topArrowView.bounds, to: containerView)
+            shapeLayerPath.addLine(to: .init(x: topArrowViewFrameInContainer.minX, y: topArrowViewFrameInContainer.maxY))
+            
+            // TODO: Do arrow rounded if needed later
+            shapeLayerPath.addLine(to: .init(x: topArrowViewFrameInContainer.midX, y: topArrowViewFrameInContainer.minY))
+            shapeLayerPath.addLine(to: .init(x: topArrowViewFrameInContainer.maxX, y: topArrowViewFrameInContainer.maxY))
+        }
+        
+        shapeLayerPath.addLine(to: contentViewFrameInContainer.topRightPoint.offset(x: -radius, y: 0))
+        shapeLayerPath.addArc(withCenter: contentViewFrameInContainer.topRightPoint.offset(x: -radius, y: radius),
+                              radius: radius,
+                              startAngle: -.pi / 2,
+                              endAngle: 0,
+                              clockwise: true)
+        
+        shapeLayerPath.addLine(to: contentViewFrameInContainer.bottomRightPoint.offset(x: 0, y: -radius))
+        shapeLayerPath.addArc(withCenter: contentViewFrameInContainer.bottomRightPoint.offset(x: -radius, y: -radius),
+                              radius: radius,
+                              startAngle: 0,
+                              endAngle: .pi / 2,
+                              clockwise: true)
+        
+        if bottomArrowView.alpha == 1 {
+            let bottomArrowViewFrameInContainer = bottomArrowView.convert(bottomArrowView.bounds, to: containerView)
+            
+            shapeLayerPath.addLine(to: .init(x: bottomArrowViewFrameInContainer.maxX, y: bottomArrowViewFrameInContainer.minY))
+            
+            // TODO: Do arrow rounded if needed later
+            shapeLayerPath.addLine(to: .init(x: bottomArrowViewFrameInContainer.midX, y: bottomArrowViewFrameInContainer.maxY))
+            shapeLayerPath.addLine(to: .init(x: bottomArrowViewFrameInContainer.minX, y: bottomArrowViewFrameInContainer.minY))
+        }
+        
+        shapeLayerPath.addLine(to: contentViewFrameInContainer.bottomLeftPoint.offset(x: radius, y: 0))
+        shapeLayerPath.addArc(withCenter: contentViewFrameInContainer.bottomLeftPoint.offset(x: radius, y: -radius),
+                              radius: radius,
+                              startAngle: .pi / 2,
+                              endAngle: .pi,
+                              clockwise: true)
+        
+        shapeLayerPath.close()
+        
+        let bottomTipShapeLayer = CAShapeLayer()
+        bottomTipShapeLayer.path = shapeLayerPath.cgPath
+        
+        // TODO: Support animation?
+        containerView.layer.mask = bottomTipShapeLayer
     }
     
     // ******************************* MARK: - Action
@@ -420,6 +448,7 @@ extension UIView {
         struct Private {
             static var setupOnce: Void = {
                 swizzleMethods(class: UIView.self, originalSelector: #selector(didMoveToSuperview), swizzledSelector: #selector(_tipView_didMoveToSuperview))
+                swizzleMethods(class: UIView.self, originalSelector: #selector(layoutSubviews), swizzledSelector: #selector(_tipView_onDidLayoutSubviews))
             }()
         }
         
@@ -430,6 +459,7 @@ extension UIView {
 // ******************************* MARK: - UIView Method Listening
 
 private var c_onDidMoveToSuperviewAssociationKey = 0
+private var c_onDidLayoutSubviewsAssociationKey = 0
 
 private extension UIView {
     typealias Action = () -> Void
@@ -443,41 +473,27 @@ private extension UIView {
         }
     }
     
+    var _onDidLayoutSubviews: Action? {
+        get {
+            return objc_getAssociatedObject(self, &c_onDidLayoutSubviewsAssociationKey) as? Action
+        }
+        set {
+            objc_setAssociatedObject(self, &c_onDidLayoutSubviewsAssociationKey, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+        }
+    }
+    
     @objc private func _tipView_didMoveToSuperview() {
         _tipView_didMoveToSuperview()
         _onDidMoveToSuperview?()
     }
     
-    func _findCommonSuperview(with view: UIView) -> UIView? {
-        var a: UIView? = self
-        var b: UIView? = view
-        var superSet = Set<UIView>()
-        while a != nil || b != nil {
-            
-            if let aSuper = a {
-                if !superSet.contains(aSuper) { superSet.insert(aSuper) }
-                else { return aSuper }
-            }
-            if let bSuper = b {
-                if !superSet.contains(bSuper) { superSet.insert(bSuper) }
-                else { return bSuper }
-            }
-            a = a?.superview
-            b = b?.superview
-        }
-        
-        return nil
+    @objc private func _tipView_onDidLayoutSubviews() {
+        _tipView_onDidLayoutSubviews()
+        _onDidLayoutSubviews?()
     }
 }
 
 // ******************************* MARK: - Private Extensions
-
-extension UIView {
-    func adjustAnchorPointKeepingPosition(_ anchorPoint: CGPoint) {
-        layer.anchorPoint = CGPoint(x: anchorPoint.x / bounds.width, y: anchorPoint.y / bounds.height)
-        layer.position = anchorPoint
-    }
-}
 
 private extension CGPoint {
     
@@ -495,5 +511,24 @@ private extension CGPoint {
     
     static func /(lhs: CGPoint, rhs: CGFloat) -> CGPoint {
         return CGPoint(x: lhs.x / rhs, y: lhs.y / rhs)
+    }
+    
+    func offset(x: CGFloat, y: CGFloat) -> CGPoint {
+        CGPoint(x: self.x + x, y: self.y + y)
+    }
+}
+
+extension CGRect {
+    
+    var topRightPoint: CGPoint {
+        CGPoint(x: maxX, y: minY)
+    }
+    
+    var bottomRightPoint: CGPoint {
+        CGPoint(x: maxX, y: maxY)
+    }
+    
+    var bottomLeftPoint: CGPoint {
+        CGPoint(x: minX, y: maxY)
     }
 }

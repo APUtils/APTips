@@ -191,20 +191,6 @@ public extension TipsManager {
 
 private extension UIView {
     
-    /// Return first view controller that contains that view using responders chain.
-    var _firstViewController: UIViewController? {
-        var nextResponder: UIResponder? = self
-        while nextResponder != nil {
-            nextResponder = nextResponder?.next
-            
-            if let viewController = nextResponder as? UIViewController {
-                return viewController
-            }
-        }
-        
-        return nil
-    }
-    
     func addTipViewAnimated(_ tipView: TipView) {
         UIView.performWithoutAnimation {
             tipView.alpha = 0
@@ -229,25 +215,6 @@ private extension UIView {
             completion?()
         })
     }
-    
-    /// Consider view with alpha <0.01 as invisible because it stops receiving touches at this level:
-    /// "This method ignores view objects that are hidden, that have disabled user interactions, or have an alpha level less than 0.01".
-    /// This one also checks all superviews for the same parameters.
-    var isVisible: Bool {
-        return ([self] + superviews).allSatisfy { !$0.isHidden && $0.alpha >= 0.01 }
-    }
-    
-    #if compiler(>=5)
-    /// All view superviews to the top most
-    var superviews: DropFirstSequence<UnfoldSequence<UIView, (UIView?, Bool)>> {
-        return sequence(first: self, next: { $0.superview }).dropFirst(1)
-    }
-    #else
-    /// All view superviews to the top most
-    var superviews: AnySequence<UIView> {
-        return sequence(first: self, next: { $0.superview }).dropFirst(1)
-    }
-    #endif
 }
 
 private extension Array where Element: Equatable {
