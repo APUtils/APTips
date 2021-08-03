@@ -17,6 +17,7 @@ public final class TipView: UIView {
     
     public enum Constants {
         public enum View {
+            public static var shadowBackgroundColor: UIColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.3)
             public static var backgroundColor: UIColor = #colorLiteral(red: 0.1294117647, green: 0.1333333333, blue: 0.137254902, alpha: 0.9)
             public static var cornerRadius: CGFloat = 8
             public static var infoBackgroundColor: UIColor = #colorLiteral(red: 0.7411764706, green: 0.7490196078, blue: 0.7568627451, alpha: 1)
@@ -347,7 +348,7 @@ extension TipView {
     
     private static func createFromCode() -> TipView {
         let tipView = TipView(frame: UIScreen.main.bounds)
-        tipView.backgroundColor = .init(white: 0, alpha: 0.3)
+        tipView.backgroundColor = Constants.View.shadowBackgroundColor
         tipView.translatesAutoresizingMaskIntoConstraints = false
         tipView.accessibilityIdentifier = "tipView"
         
