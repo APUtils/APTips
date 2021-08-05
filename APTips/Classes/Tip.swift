@@ -17,10 +17,10 @@ public struct Tip {
     public enum PointingMode {
         
         /// Tip will be displayed from a source center.
-        case center
+        case center(offset: CGFloat)
         
         /// Tip will be displayed from a source top or bottom side.
-        case side
+        case side(offset: CGFloat)
     }
     
     /// Show mode for a tip.
@@ -44,6 +44,9 @@ public struct Tip {
     /// Tip's message to show.
     public var message: String
     
+    /// Tip view configuration.
+    public var configuration: TipView.Configuration
+    
     /// Specifies tip's pointing point.
     public var pointingMode: PointingMode
     
@@ -54,11 +57,13 @@ public struct Tip {
     /// - Parameters:
     ///   - id: Tip's ID. If `nil` is passed tip's message will be used instead.
     ///   - message: Tip's message.
+    ///   - configuration: Tip view configuration.
     ///   - pointingMode: Tip's pointing mode.
     ///   - showMode: Tip's show mode.
-    public init(id: String? = nil, message: String, pointingMode: PointingMode, showMode: ShowMode) {
+    public init(id: String? = nil, message: String, configuration: TipView.Configuration, pointingMode: PointingMode, showMode: ShowMode) {
         self.id = id ?? message
         self.message = message
+        self.configuration = configuration
         self.pointingMode = pointingMode
         self.showMode = showMode
     }
