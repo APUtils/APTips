@@ -60,7 +60,7 @@ public struct Tip {
     ///   - configuration: Tip view configuration.
     ///   - pointingMode: Tip's pointing mode.
     ///   - showMode: Tip's show mode.
-    public init(id: String? = nil, message: String, configuration: TipView.Configuration, pointingMode: PointingMode, showMode: ShowMode) {
+    public init(id: String? = nil, message: String, configuration: TipView.Configuration = .default, pointingMode: PointingMode, showMode: ShowMode) {
         self.id = id ?? message
         self.message = message
         self.configuration = configuration
