@@ -11,10 +11,16 @@ import UIKit
 
 class ViewController: UIViewController {
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+    }
+    
     @IBAction fileprivate func onTap(_ sender: UIButton) {
         var configuration = TipView.Configuration.default
-        configuration.borderColor = .red
-        configuration.borderWidth = 5
+        configuration.backgroundColor = .blue
+        configuration.borderColor = .clear
+        configuration.borderWidth = 0
         
         let tip = Tip(message: "Ta-da",
                       configuration: configuration,

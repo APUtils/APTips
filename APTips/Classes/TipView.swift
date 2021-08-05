@@ -340,6 +340,8 @@ public final class TipView: UIView {
         borderLayer.path = shapeLayerPath.cgPath
         borderLayer.strokeColor = configuration.borderColor.cgColor
         borderLayer.lineWidth = configuration.borderWidth
+        borderLayer.fillColor = UIColor.clear.cgColor
+        borderLayer.backgroundColor = UIColor.clear.cgColor
         
         // TODO: Support animation?
         containerView.layer.mask = bottomTipShapeLayer
